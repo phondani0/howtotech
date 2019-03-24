@@ -1,0 +1,25 @@
+<h1>Add Post</h1>
+<div class="row">
+    <form action="/posts" method="POST">
+        <div class="row">
+            <div class="input-group">
+                <input type="text" name="title">
+                <label for="title">Title</label>
+            </div>
+        </div>
+        <div class="row">
+            <label>
+                <input type="checkbox" name="allowComments" class="" checked="checked">
+                <span>Allow Comments</span>
+            </label>
+        </div>
+        <div class="row">
+            <p>
+                <h5>Write what is in your mind:</h5>
+                <textarea name="body"></textarea>
+            </p>
+        </div>
+
+        <input type="submit" value="Post" class="btn">
+    </form>
+</div>

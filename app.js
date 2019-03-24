@@ -2,11 +2,13 @@ const express = require('express');
 const mongoose = require('mongoose');
 const exphbs = require('express-handlebars');
 
-mongoose.connect('mongodb://localhost:27017/howtotech',{useNewUrlParser:true})
-    .then(()=>{
+mongoose.connect('mongodb://localhost:27017/howtotech', {
+        useNewUrlParser: true
+    })
+    .then(() => {
         console.log(`Connected to MongoDB`);
-    })  
-    .catch((e)=>{
+    })
+    .catch((e) => {
         console.log(`Error: ${e.message}`);
     });
 
@@ -25,6 +27,12 @@ app.engine('handlebars', exphbs({
 }));
 app.set('view engine', 'handlebars');
 
+// Bodyparser
+app.use(express.urlencoded({
+    extended: true
+}));
+app.use(express.json());
+
 // log req method and path
 app.use((req, res, next) => {
     console.log(`Req : ${req.method}  ${req.url}`);
@@ -32,8 +40,8 @@ app.use((req, res, next) => {
 });
 
 // Routes
-app.use('/',index);
-app.use('/posts',posts);
+app.use('/', index);
+app.use('/posts', posts);
 
 // Log errors
 app.use((err, req, res, next) => {

@@ -15,7 +15,7 @@ app.engine('handlebars', exphbs({
 app.set('view engine', 'handlebars');
 
 app.use((req, res, next) => {
-    console.log(`Req url: ${req.url}`);
+    console.log(`Req : ${req.method}  ${req.url}`);
     next();
 });
 

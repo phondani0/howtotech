@@ -2,6 +2,14 @@ const express = require('express');
 const mongoose = require('mongoose');
 const exphbs = require('express-handlebars');
 
+mongoose.connect('mongodb://localhost:27017/howtotech',{useNewUrlParser:true})
+    .then(()=>{
+        console.log(`Connected to MongoDB`);
+    })  
+    .catch((e)=>{
+        console.log(`Error: ${e.message}`);
+    });
+
 const app = express();
 
 // Static files

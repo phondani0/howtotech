@@ -10,6 +10,10 @@ mongoose.connect('mongodb://localhost:27017/howtotech',{useNewUrlParser:true})
         console.log(`Error: ${e.message}`);
     });
 
+// import routes
+const index = require('./routes/index');
+const posts = require('./routes/posts');
+
 const app = express();
 
 // Static files
@@ -19,19 +23,19 @@ app.use(express.static(__dirname + '/public'));
 app.engine('handlebars', exphbs({
     defaultLayout: 'main'
 }));
-
 app.set('view engine', 'handlebars');
 
+// log req method and path
 app.use((req, res, next) => {
     console.log(`Req : ${req.method}  ${req.url}`);
     next();
 });
 
 // Routes
-app.get('/', (req, res) => {
-    res.render('index/index');
-});
+app.use('/',index);
+app.use('/posts',posts);
 
+// Log errors
 app.use((err, req, res, next) => {
     if (err) {
         console.log(`Error: ${err.message}`);

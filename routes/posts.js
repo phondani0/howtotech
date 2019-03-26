@@ -23,8 +23,8 @@ router.post('/', (req, res) => {
 
     const post = {
         'title': req.body.title,
-        'allowComments': allowComments,
-        'body': req.body.body
+        'body': req.body.body,
+        'allowComments': allowComments
     }
     new Post(post)
         .save()
@@ -48,6 +48,25 @@ router.get('/', (req, res) => {
         })
         .catch((err) => {
             res.status(404).send();
+        })
+});
+
+router.put('/id:', (req, res) => {
+    const updatedPost = {
+        title: req.body.title,
+        body: req.body.body,
+        allowComments: req.body.allowComments
+    }
+
+    Post.findById(req.params.id)
+        .then((doc) => {
+            console.log(`doc:  ${doc}`);
+            doc.updateOne(updatedPost, () => {
+                res.status(200).send();
+            });
+        })
+        .catch((err) => {
+            console.log(`Error: ${err}`);
         })
 });
 

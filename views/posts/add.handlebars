@@ -1,25 +1,22 @@
-<h1>Add Post</h1>
-<div class="row">
-    <form action="/posts" method="POST">
-        <div class="row">
-            <div class="input-group">
-                <input type="text" name="title">
-                <label for="title">Title</label>
-            </div>
-        </div>
-        <div class="row">
-            <label>
-                <input type="checkbox" name="allowComments" class="" checked="checked">
-                <span>Allow Comments</span>
-            </label>
-        </div>
-        <div class="row">
-            <p>
-                <h5>Write what is in your mind:</h5>
-                <textarea name="body"></textarea>
-            </p>
-        </div>
+<h1 class="py-3">Add Post</h1>
 
-        <input type="submit" value="Post" class="btn">
-    </form>
+<div class="row">
+    <div class="col-sm-12 col-md-8 col-lg-6">
+        <form action="/posts" method="POST">
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input class="form-control" id="title" type="text" name="title" placeholder="Title of the Post">
+            </div>
+            <div class="form-group form-check">
+                <input class="form-check-input" name="allowComments" type="checkbox" checked id="checkbox">
+                <label class="form-check-label" for="checkbox">Allow Comments</label>
+            </div>
+            <div class="form-group">
+                <label for="post-body">Body </label>
+                <textarea class="input-group" id="post-body" name="body" rows="4"
+                    placeholder="Write what is in your mind"></textarea>
+            </div>
+            <input class="form-control btn btn-dark" type="submit" value="Post">
+        </form>
+    </div>
 </div>

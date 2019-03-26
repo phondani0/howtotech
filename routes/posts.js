@@ -17,7 +17,7 @@ router.get('/add', (req, res) => {
 router.post('/', (req, res) => {
     let allowComments = false;
 
-    if (req.body.allowComments === 'on') {
+    if (req.body.allowComments == 'on') {
         allowComments = true;
     }
 

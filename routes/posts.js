@@ -13,6 +13,23 @@ router.get('/add', (req, res) => {
     res.render('posts/add');
 });
 
+router.get('/edit/id:', (req, res) => {
+    Post.findById(req.params.id)
+        .then((doc) => {
+            console.log(doc);
+        })
+        .catch((err) => {
+            console.log(`Error: ${err}`);
+        })
+    res.render('posts/edit');
+});
+
+
+
+/* ===========================
+========= API-ROUTES ========= 
+=========================== */
+
 // add new post
 router.post('/', (req, res) => {
     let allowComments = false;
@@ -42,9 +59,11 @@ router.post('/', (req, res) => {
 router.get('/', (req, res) => {
     Post.find({})
         .sort('-date')
-        .then((doc) => {
-            console.log(doc);
-            res.send(doc);
+        .then((posts) => {
+            // console.log(doc);
+            res.render('index/index', {
+                'posts': posts
+            });
         })
         .catch((err) => {
             res.status(404).send();

@@ -1,19 +1,21 @@
 <h1 class="py-3">Edit Post</h1>
 <div class="row">
     <div class="col-sm-12 col-md-8 col-lg-6">
-        <form action="/posts" method="POST">
+        <form action="/posts/{{post._id}}?_method=PUT" method="POST">
             <div class="form-group">
                 <label for="title">Title</label>
-                <input class="form-control" id="title" type="text" name="title" placeholder="Title of the Post">
+                <input class="form-control" id="title" type="text" name="title" value="{{post.title}}"
+                    placeholder=" Title of the Post">
             </div>
             <div class="form-group form-check">
-                <input class="form-check-input" name="allowComments" type="checkbox" checked id="checkbox">
+                <input class="form-check-input" name="allowComments" type="checkbox" {{#if post.allowComments}} checked
+                    {{/if}} id="checkbox">
                 <label class="form-check-label" for="checkbox">Allow Comments</label>
             </div>
             <div class="form-group">
                 <label for="post-body">Body </label>
                 <textarea class="input-group" id="post-body" name="body" rows="4"
-                    placeholder="Write what is in your mind"></textarea>
+                    placeholder="Write what is in your mind">{{post.body}}</textarea>
             </div>
             <input class="form-control btn btn-dark" type="submit" value="Post">
         </form>

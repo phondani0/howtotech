@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const exphbs = require('express-handlebars');
+const methodOverride = require('method-override')
 
 mongoose.connect('mongodb://localhost:27017/howtotech', {
         useNewUrlParser: true
@@ -26,6 +27,9 @@ app.engine('handlebars', exphbs({
     defaultLayout: 'main'
 }));
 app.set('view engine', 'handlebars');
+
+// MethodOverride
+app.use(methodOverride('_method'));
 
 // Bodyparser
 app.use(express.urlencoded({

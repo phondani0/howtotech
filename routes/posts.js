@@ -13,15 +13,17 @@ router.get('/add', (req, res) => {
     res.render('posts/add');
 });
 
-router.get('/edit/id:', (req, res) => {
+router.get('/edit/:id', (req, res) => {
     Post.findById(req.params.id)
-        .then((doc) => {
-            console.log(doc);
+        .then((post) => {
+            console.log(post);
+            res.render('posts/edit', {
+                post
+            });
         })
         .catch((err) => {
             console.log(`Error: ${err}`);
         })
-    res.render('posts/edit');
 });
 
 
@@ -70,17 +72,23 @@ router.get('/', (req, res) => {
         })
 });
 
-router.put('/id:', (req, res) => {
+router.put('/:id', (req, res) => {
     const updatedPost = {
         title: req.body.title,
         body: req.body.body,
-        allowComments: req.body.allowComments
+        allowComments: false
+    }
+
+    if (req.body.allowComments === 'on') {
+        updatedPost.allowComments = true
     }
 
     Post.findById(req.params.id)
         .then((doc) => {
-            console.log(`doc:  ${doc}`);
-            doc.updateOne(updatedPost, () => {
+            // console.log(`doc:  ${doc}`);
+            doc.updateOne(updatedPost, (err) => {
+
+                console.log(`Error: ${err}`);
                 res.status(200).send();
             });
         })

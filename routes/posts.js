@@ -83,11 +83,12 @@ router.put('/:id', (req, res) => {
 
     Post.findById(req.params.id)
         .then((doc) => {
-            // console.log(`doc:  ${doc}`);
+            console.log(`doc:  ${doc}`);
             doc.updateOne(updatedPost, (err) => {
-
-                console.log(`Error: ${err}`);
-                res.status(200).send();
+                if (!err) {
+                    return res.status(200).send();
+                }
+                //else handle error @TODO
             });
         })
         .catch((err) => {

@@ -15,7 +15,6 @@ router.get('/', (req, res) => {
 router.get('/dashboard', (req, res) => {
     Post.find({})
         .then((posts) => {
-            // console.log(posts);
             res.render('index/dashboard', {
                 posts
             });

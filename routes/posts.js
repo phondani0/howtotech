@@ -70,6 +70,7 @@ router.get('/', (req, res) => {
         })
 });
 
+// update post
 router.put('/:id', (req, res) => {
     const updatedPost = {
         title: req.body.title,
@@ -93,6 +94,18 @@ router.put('/:id', (req, res) => {
         })
         .catch((err) => {
             console.log(`Error: ${err}`);
+        })
+});
+
+// delete post
+router.delete('/:id', (req, res) => {
+    Post.findByIdAndDelete(req.params.id)
+        .then(() => {
+            console.log('Post deleted successfully');
+            res.redirect('index/dashboard');
+        })
+        .catch((err) => {
+            res.status(500).send();
         })
 });
 

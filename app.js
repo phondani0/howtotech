@@ -3,7 +3,13 @@ const mongoose = require('mongoose');
 const exphbs = require('express-handlebars');
 const methodOverride = require('method-override')
 
-mongoose.connect('mongodb://localhost:27017/howtotech', {
+// import mongodb_uri
+
+const {
+    mongodb_uri
+} = require('./config/db');
+
+mongoose.connect(mongodb_uri, {
         useNewUrlParser: true
     })
     .then(() => {

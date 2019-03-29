@@ -1,20 +1,24 @@
-<table class="table">
-    <thead>
-        <th>Title</th>
-        <th>Category</th>
-        <th>AllowComments</th>
-        <th>date</th>
-    </thead>
-    <tbody>
-        {{#each posts}}
-        <tr>
-            <td>{{title}}</td>
-            <td>{{category}}</td>
-            <td>{{allowComments}}</td>
-            <td>{{date}}</td>
-            <td><a href="/posts/edit/{{_id}}" class="btn btn-success">Edit</a> <a href="/posts/delete/{{_id}}"
-                    class="btn btn-danger">Delete</a></td>
-        </tr>
-        {{/each}}
-    </tbody>
-</table>
+<div class="py-3">
+    <table class="table">
+        <thead>
+            <th>Title</th>
+            <th>Category</th>
+            <th>AllowComments</th>
+            <th>date</th>
+        </thead>
+        <tbody>
+            {{#each posts}}
+            <tr>
+                <td>{{title}}</td>
+                <td>{{category}}</td>
+                <td>{{allowComments}}</td>
+                <td>{{date}}</td>
+                <td>
+                    <a href="/posts/edit/{{_id}}" class="btn-sm btn-success no_underline">Edit</a>
+                    <a href="/posts/delete/{{_id}}" class="btn-sm btn-danger no_underline">Delete</a>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>

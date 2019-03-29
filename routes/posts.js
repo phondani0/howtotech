@@ -26,6 +26,19 @@ router.get('/edit/:id', (req, res) => {
         })
 });
 
+router.get('/delete/:id', (req, res) => {
+    Post.findById(req.params.id)
+        .then((post) => {
+            console.log(post);
+            res.render('posts/delete', {
+                post
+            });
+        })
+        .catch((err) => {
+            console.log(`Error: ${err}`);
+        })
+})
+
 /* ===========================
 ========= API-ROUTES ========= 
 =========================== */
@@ -102,7 +115,7 @@ router.delete('/:id', (req, res) => {
     Post.findByIdAndDelete(req.params.id)
         .then(() => {
             console.log('Post deleted successfully');
-            res.redirect('index/dashboard');
+            res.redirect('/dashboard');
         })
         .catch((err) => {
             res.status(500).send();

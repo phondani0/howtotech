@@ -35,4 +35,16 @@ router.get('/admin', (req, res) => {
         })
 });
 
+router.get('/admin/posts', (req, res) => {
+    Post.find({})
+        .then((posts) => {
+            res.render('admin/posts', {
+                posts
+            });
+        })
+        .catch((err) => {
+            console.log(`Error: ${err}`);
+        })
+});
+
 module.exports = router;

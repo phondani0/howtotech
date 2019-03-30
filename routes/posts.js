@@ -68,21 +68,6 @@ router.post('/', (req, res) => {
         });
 });
 
-// get posts
-router.get('/', (req, res) => {
-    Post.find({})
-        .sort('-date')
-        .then((posts) => {
-            // console.log(doc);
-            res.render('index/index', {
-                'posts': posts
-            });
-        })
-        .catch((err) => {
-            res.status(404).send();
-        })
-});
-
 // update post
 router.put('/:id', (req, res) => {
     const updatedPost = {
@@ -100,7 +85,7 @@ router.put('/:id', (req, res) => {
             console.log(`doc:  ${doc}`);
             doc.updateOne(updatedPost, (err) => {
                 if (!err) {
-                    return res.status(200).send();
+                    return res.redirect('/dashboard');
                 }
                 //else handle error @TODO
             });

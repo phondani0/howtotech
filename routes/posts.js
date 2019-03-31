@@ -16,7 +16,7 @@ router.get('/add', (req, res) => {
 router.get('/edit/:id', (req, res) => {
     Post.findById(req.params.id)
         .then((post) => {
-            console.log(post);
+            // console.log(post);
             res.render('posts/edit', {
                 post
             });

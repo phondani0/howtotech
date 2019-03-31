@@ -1,3 +1,17 @@
+/* sticky footer-bottom */
+body {
+    min-height: 100vh;
+    position: relative;
+    margin: 0;
+    padding-bottom: 60px;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
 .no_underline {
     text-decoration: none !important;
 }

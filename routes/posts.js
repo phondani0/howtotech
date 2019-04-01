@@ -60,7 +60,7 @@ router.post('/', (req, res) => {
         .save()
         .then((doc) => {
             console.log(doc);
-            res.send(doc);
+            res.redirect('/admin/posts');
         })
         .catch((err) => {
             console.log(err);
@@ -85,7 +85,7 @@ router.put('/:id', (req, res) => {
             console.log(`doc:  ${doc}`);
             doc.updateOne(updatedPost, (err) => {
                 if (!err) {
-                    return res.redirect('/dashboard');
+                    return res.redirect('/admin/posts');
                 }
                 //else handle error @TODO
             });
@@ -100,7 +100,7 @@ router.delete('/:id', (req, res) => {
     Post.findByIdAndDelete(req.params.id)
         .then(() => {
             console.log('Post deleted successfully');
-            res.redirect('/dashboard');
+            res.redirect('/admin/posts');
         })
         .catch((err) => {
             res.status(500).send();

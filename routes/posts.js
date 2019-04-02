@@ -10,14 +10,14 @@ const router = express.Router();
 
 // add post
 router.get('/add', (req, res) => {
-    res.render('posts/add');
+    res.render('post/add');
 });
 
 router.get('/edit/:id', (req, res) => {
     Post.findById(req.params.id)
         .then((post) => {
             // console.log(post);
-            res.render('posts/edit', {
+            res.render('post/edit', {
                 post
             });
         })
@@ -30,7 +30,7 @@ router.get('/delete/:id', (req, res) => {
     Post.findById(req.params.id)
         .then((post) => {
             console.log(post);
-            res.render('posts/delete', {
+            res.render('post/delete', {
                 post
             });
         })
@@ -42,6 +42,18 @@ router.get('/delete/:id', (req, res) => {
 /* ===========================
 ========= API-ROUTES ========= 
 =========================== */
+
+// show post
+router.get('/show/:id', (req, res) => {
+    Post.findById(req.params.id)
+        .then((post) => {
+            res.render('post/show');
+        })
+        .catch((err) => {
+            console.log(`Error: ${err.message}`);
+            res.status(500).send();
+        });
+});
 
 // add new post
 router.post('/', (req, res) => {

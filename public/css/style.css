@@ -1,9 +1,18 @@
 /* sticky footer-bottom */
+
+* {
+    text-decoration: none !important;
+}
+
 body {
     min-height: 100vh;
     position: relative;
     margin: 0;
     padding-bottom: 60px;
+}
+
+.post a {
+    color: inherit !important;
 }
 
 footer {

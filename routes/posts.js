@@ -47,7 +47,9 @@ router.get('/delete/:id', (req, res) => {
 router.get('/show/:id', (req, res) => {
     Post.findById(req.params.id)
         .then((post) => {
-            res.render('post/show');
+            res.render('post/show', {
+                post
+            });
         })
         .catch((err) => {
             console.log(`Error: ${err.message}`);

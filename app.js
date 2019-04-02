@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const exphbs = require('express-handlebars');
 const methodOverride = require('method-override')
-
+const hbs = require('./helpers/hbs');
 // import mongodb_uri
 
 const {
@@ -30,7 +30,10 @@ app.use(express.static(__dirname + '/public'));
 
 // View Engine
 app.engine('handlebars', exphbs({
-    defaultLayout: 'main'
+    defaultLayout: 'main',
+    helpers: {
+        parseDate: hbs.parseDate
+    }
 }));
 app.set('view engine', 'handlebars');
 

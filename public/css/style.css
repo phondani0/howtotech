@@ -2,6 +2,7 @@
 
 * {
     text-decoration: none !important;
+    box-sizing: border-box;
 }
 
 body {
@@ -23,10 +24,4 @@ footer {
 
 .no_underline {
     text-decoration: none !important;
-}
-
-@media (max-width: 992px) {
-    .container {
-        width: 100%;
-    }
 }

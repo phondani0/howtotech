@@ -1,6 +1,23 @@
-<h1 class="py-3">HowToTech | Home</h1>
+<h1 class="py-3 display-4">Latest Posts</h1>
 
-{{#each posts}}
+<div class="my-3 my-sm-4">
+    <div class="row">
+        {{#each posts}}
+        <div class="col-md-6 col-lg-4 py-3 py-sm-0 p-sm-3">
+            <div class="card">
+                <img src="https://lorempixel.com/400/250" class="card-img" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{title}}</h5>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>
+
+
+
+{{!-- {{#each posts}}
 <div class="card my-3 my-sm-4 p-sm-3">
     <div class="row no-gutters align-items-center">
         <div class="col-md-4">
@@ -15,4 +32,4 @@
         </div>
     </div>
 </div>
-{{/each}}
+{{/each}} --}}

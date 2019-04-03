@@ -32,7 +32,8 @@ app.use(express.static(__dirname + '/public'));
 app.engine('handlebars', exphbs({
     defaultLayout: 'main',
     helpers: {
-        parseDate: hbs.parseDate
+        dateString: hbs.dateString,
+        getDate: hbs.getDate
     }
 }));
 app.set('view engine', 'handlebars');

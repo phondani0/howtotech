@@ -1,8 +1,15 @@
 module.exports = {
-    parseDate: function (date) {
+    dateString: function (date) {
         d = new Date(parseInt(date));
         const newDate = d.toString().replace(/[(].*/, '');
         // console.log(newDate);
         return newDate;
+    },
+    getDate: function (date) {
+        d = new Date(parseInt(date));
+        const newDate = d.toDateString();
+        // console.log(newDate);
+        return newDate;
     }
+
 }

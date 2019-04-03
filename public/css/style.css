@@ -3,14 +3,22 @@
 * {
     text-decoration: none !important;
     box-sizing: border-box;
-    font-family: 'Roboto Slab', 'sans' !important;
 }
 
 body {
+    font-family: 'Roboto', 'sans' !important;
     min-height: 100vh;
     position: relative;
     margin: 0;
     padding-bottom: 60px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-family: 'Roboto Slab', 'sans' !important;
 }
 
 .post a {

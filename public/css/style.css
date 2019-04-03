@@ -21,6 +21,8 @@ h5 {
     font-family: 'Roboto Slab', 'sans' !important;
 }
 
+.section_header {}
+
 .post a {
     color: inherit !important;
 }
@@ -28,7 +30,6 @@ h5 {
 .post {
     position: relative;
 }
-
 
 @media only screen and (min-width:768px) {
     .post .card {
@@ -44,7 +45,7 @@ h5 {
 
 @media only screen and (min-width:1200px) {
     .post .card {
-        min-height: 400px;
+        min-height: 410px;
     }
 }
 
@@ -52,9 +53,11 @@ h5 {
     position: absolute;
     top: 10px;
     left: 10px;
-    background-color: rgb(0, 0, 0, 37);
+    background-color: rgb(0, 0, 0, 0.6);
     padding: 2px 6px;
     text-transform: uppercase;
+    font-family: 'Roboto Slab', 'sans' !important;
+    border-radius: 3px;
 }
 
 .post-category:hover {
@@ -63,7 +66,7 @@ h5 {
 
 .post-header {
     font-size: 26px;
-    line-height: 26px;
+    line-height: 30px;
 }
 
 footer {

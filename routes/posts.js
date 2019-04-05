@@ -68,6 +68,8 @@ router.post('/', (req, res) => {
     const post = {
         'title': req.body.title,
         'body': req.body.body,
+        'category': req.body.category,
+        'status': req.body.status,
         'allowComments': allowComments
     }
     new Post(post)
@@ -87,6 +89,8 @@ router.put('/:id', (req, res) => {
     const updatedPost = {
         title: req.body.title,
         body: req.body.body,
+        category: req.body.category,
+        status: req.body.status,
         allowComments: false
     }
 

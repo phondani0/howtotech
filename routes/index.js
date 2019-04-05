@@ -10,7 +10,9 @@ const router = express.Router();
 
 // get posts
 router.get('/', (req, res) => {
-    Post.find({})
+    Post.find({
+            status: 'published'
+        })
         .sort('-date')
         .then((posts) => {
             // console.log(doc);

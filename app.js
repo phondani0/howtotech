@@ -33,7 +33,8 @@ app.engine('handlebars', exphbs({
     defaultLayout: 'main',
     helpers: {
         dateString: hbs.dateString,
-        getDate: hbs.getDate
+        getDate: hbs.getDate,
+        select: hbs.select
     }
 }));
 app.set('view engine', 'handlebars');

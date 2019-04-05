@@ -19,6 +19,10 @@ const postSchema = new Schema({
         data: Buffer,
         contentType: String
     }],
+    status: {
+        type: String,
+        required: true
+    },
     allowComments: {
         type: Boolean,
         required: true

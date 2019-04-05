@@ -7,13 +7,25 @@
                 <label for="title">Title</label>
                 <input class="form-control" id="title" type="text" name="title" placeholder="Title of the Post">
             </div>
+            <div class="form-group">
+                <label for="title">Category</label>
+                <input class="form-control" id="category" type="text" name="category"
+                    placeholder="Category of the Post">
+            </div>
+            <div class="form-group">
+                <label for="status">Status</label>
+                <select class="form-control" id="status" name="status">
+                    <option value="Published">Published</option>
+                    <option value="Unpublished">Unpublished</option>
+                </select>
+            </div>
             <div class="form-group form-check">
                 <input class="form-check-input" name="allowComments" type="checkbox" checked id="checkbox">
                 <label class="form-check-label" for="checkbox">Allow Comments</label>
             </div>
             <div class="form-group">
                 <label for="post-body">Body </label>
-                <textarea class="input-group" id="post-body" name="body" rows="4"
+                <textarea class="input-group p-2" id="post-body" name="body" rows="4"
                     placeholder="Write what is in your mind"></textarea>
             </div>
             <input class="form-control btn btn-dark" type="submit" value="Post">

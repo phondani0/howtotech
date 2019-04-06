@@ -125,4 +125,22 @@ router.delete('/:id', (req, res) => {
         })
 });
 
+// get posts by category
+router.get('/', (req, res) => {
+    Post.find({
+            status: 'published',
+            category: req.query.category
+        })
+        .sort('-date')
+        .then((posts) => {
+            // console.log(doc);
+            res.render('post/category', {
+                'posts': posts
+            });
+        })
+        .catch((err) => {
+            res.status(404).send();
+        })
+});
+
 module.exports = router;

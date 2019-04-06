@@ -5,12 +5,13 @@
         <form action="/posts" method="POST">
             <div class="form-group">
                 <label for="title">Title</label>
-                <input class="form-control" id="title" type="text" name="title" placeholder="Title of the Post">
+                <input class="form-control" id="title" type="text" name="title" placeholder="Title of the Post"
+                    required>
             </div>
             <div class="form-group">
                 <label for="title">Category</label>
-                <input class="form-control" id="category" type="text" name="category"
-                    placeholder="Category of the Post">
+                <input class="form-control" id="category" type="text" name="category" placeholder="Category of the Post"
+                    required>
             </div>
             <div class="form-group">
                 <label for="status">Status</label>
@@ -26,7 +27,7 @@
             <div class="form-group">
                 <label for="post-body">Body </label>
                 <textarea class="input-group p-2" id="post-body" name="body" rows="4"
-                    placeholder="Write what is in your mind"></textarea>
+                    placeholder="Write what is in your mind" required></textarea>
             </div>
             <input class="form-control btn btn-dark" type="submit" value="Post">
         </form>

@@ -21,6 +21,16 @@ h5 {
     font-family: 'Roboto Slab', 'sans' !important;
 }
 
+:focus {
+    outline: none !important;
+    border: 0;
+}
+
+.navbar {
+    box-shadow: rgba(0, 0, 0, 0.22) 0px 0px 3px 0px;
+    height: 65px;
+}
+
 .section_header {}
 
 .post a {
@@ -29,24 +39,6 @@ h5 {
 
 .post {
     position: relative;
-}
-
-@media only screen and (min-width:768px) {
-    .post .card {
-        min-height: 390px;
-    }
-}
-
-@media only screen and (min-width:992px) {
-    .post .card {
-        min-height: 370px;
-    }
-}
-
-@media only screen and (min-width:1200px) {
-    .post .card {
-        min-height: 410px;
-    }
 }
 
 .post-category {
@@ -77,4 +69,68 @@ footer {
 
 .no_underline {
     text-decoration: none !important;
+}
+
+/* ========================== */
+/* ====== MEDIA QUERIES ===== */
+/* ========================== */
+
+@media only screen and (min-width:768px) {
+    .post .card {
+        min-height: 390px;
+    }
+}
+
+@media only screen and (min-width:992px) {
+    .navbar {
+        box-shadow: rgba(0, 0, 0, 0.22) 0px 0px 3px 0px;
+        height: 90px;
+    }
+
+    .post .card {
+        min-height: 370px;
+    }
+}
+
+@media only screen and (min-width:1200px) {
+    .post .card {
+        min-height: 410px;
+    }
+}
+
+@media only screen and (max-width:992px) {
+    .navbar-toggler {
+        border: none;
+    }
+
+    .navbar-toggler:active {
+        outline: none;
+    }
+
+    .navbar-collapse {
+        z-index: 9999;
+        margin: 0;
+        position: absolute;
+        top: 65px;
+        left: 0;
+        right: 0;
+        background-color: rgb(31, 31, 31) !important;
+    }
+
+    .navbar-collapse ul {
+        padding: 15px 0 25px;
+    }
+
+    .navbar-collapse li {
+        padding: 0 0 10px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+    }
+
+    .navbar-collapse a.nav-link {
+        color: rgba(255, 255, 255, 0.5) !important;
+    }
+
+    .navbar-collapse li.active a {
+        color: #fff !important;
+    }
 }

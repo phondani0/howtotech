@@ -29,6 +29,12 @@ h5 {
 .navbar {
     box-shadow: rgba(0, 0, 0, 0.22) 0px 0px 3px 0px;
     height: 65px;
+    font-family: 'Roboto Slab', 'sans' !important;
+}
+
+.navbar a.nav-link {
+    font-size: 20px;
+    margin: 0 10px;
 }
 
 .section_header {}
@@ -87,6 +93,15 @@ footer {
         height: 90px;
     }
 
+    .navbar .navbar-nav li.active:after {
+        content: "";
+        display: block;
+        width: 50%;
+        margin: -5px auto;
+        border-bottom: 3px solid crimson;
+        border-radius: 5px;
+    }
+
     .post .card {
         min-height: 370px;
     }
@@ -98,7 +113,13 @@ footer {
     }
 }
 
-@media only screen and (max-width:992px) {
+/* max-width */
+@media only screen and (max-width:991.98px) {
+    .navbar {
+        height: 80px;
+        padding-top: 0 !important;
+    }
+
     .navbar-toggler {
         border: none;
     }

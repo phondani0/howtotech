@@ -1,49 +1,43 @@
-<div class="row py-3">
-    <div class="col-md-4">
-        <div class="list-group">
-            <a class="list-group-item list-group-item-action active" href="/admin"><i class="fa fa-cog"></i><span
-                    class="px-2">Dashboard</span></a>
-            <a class="list-group-item list-group-item-action" href="/admin/pages"><i class="fa fa-file-alt"></i><span
-                    class="px-2">Pages</span></a>
-            <a class="list-group-item list-group-item-action" href="/admin/posts"><i class="fa fa-pencil-alt"></i><span
-                    class="px-2">Posts</span></a>
-        </div>
-    </div>
-    <div class="col-md-8 my-3 my-md-0">
-        <div class="list-group">
-            <div class="list-group-item bg-primary text-white">
-                <span>Overview</span>
-            </div>
-            <div class="list-group-item">
-                <div class="d-flex justify-content-sm-between">
-                    <div class="card flex-grow-1 mr-3 pt-3 text-center bg-light">
-                        <h4><i class="fa fa-file-alt"></i> 12</h4>
-                        <p>Pages</p>
-                    </div>
-                    <div class="card flex-grow-1 mr-3 pt-3 text-center bg-light">
-                        <h4><i class="fas fa-pencil-alt"></i> 24</h4>
-                        <p>Posts</p>
-                    </div>
-                    <div class="card d-none d-sm-block flex-grow-1 pt-3 text-center bg-light">
-                        <h4><i class="fa fa-align-left"></i> 12,334</h4>
-                        <p>Visits</p>
+<div id="dashboard">
+    {{>_admin_header}}
+
+    <div class="row py-3">
+        <div class="col-md-12 my-3 my-md-0 mx-auto">
+            <div class="list-group">
+                <div class="list-group-item text-white dashboard-header">
+                    <span>Overview</span>
+                </div>
+                <div class="list-group-item">
+                    <div class="d-flex justify-content-sm-between">
+                        <div class="card flex-grow-1 mr-3 pt-3 text-center bg-white">
+                            <h4><i class="fa fa-file-alt"></i> 12</h4>
+                            <p>Pages</p>
+                        </div>
+                        <div class="card flex-grow-1 mr-3 pt-3 text-center bg-white">
+                            <h4><i class="fas fa-pencil-alt"></i> 24</h4>
+                            <p>Posts</p>
+                        </div>
+                        <div class="card d-none d-sm-block flex-grow-1 pt-3 text-center bg-white">
+                            <h4><i class="fa fa-align-left"></i> 12,334</h4>
+                            <p>Visits</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="list-group my-3">
-            <div class="list-group-item bg-primary text-white">
-                <span>Action</span>
-            </div>
-            <div class="list-group-item">
-                <div class="d-flex justify-content-start">
-                    <div class="card text-center px-4 px-sm-4 px-md-5 pt-2 pt-sm-3 mr-3 mr-sm-4 bg-light">
-                        <a href="/posts/add"><i class="fa fa-plus-circle fa-3x"></i></a>
-                        <h5 class="pt-2 pt-md-3 pb-md-2">Post</h5>
-                    </div>
-                    <div class="card text-center px-4 px-sm-4 px-md-5 pt-2 pt-sm-3 bg-light">
-                        <a href="/pages/add"><i class="fa fa-plus-circle fa-3x"></i></a>
-                        <h5 class="pt-2 pt-md-3 pb-md-2">Page</h5>
+            <div class="list-group my-3">
+                <div class="list-group-item text-white dashboard-header">
+                    <span>Action</span>
+                </div>
+                <div class="list-group-item dashboard-item">
+                    <div class="d-flex justify-content-start">
+                        <div class="card text-center px-4 px-sm-4 px-md-5 pt-2 pt-sm-3 mr-3 mr-sm-4 bg-white">
+                            <a href="/posts/add"><i class="fa fa-plus-circle fa-3x action-icon"></i></a>
+                            <h5 class="pt-2 pt-md-3 pb-md-2">Post</h5>
+                        </div>
+                        <div class="card text-center px-4 px-sm-4 px-md-5 pt-2 pt-sm-3 bg-white">
+                            <a href="/pages/add"><i class="fa fa-plus-circle fa-3x action-icon"></i></a>
+                            <h5 class="pt-2 pt-md-3 pb-md-2">Page</h5>
+                        </div>
                     </div>
                 </div>
             </div>

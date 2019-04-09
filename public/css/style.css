@@ -82,6 +82,25 @@ footer {
 }
 
 /* ========================== */
+/* ======= DASHBOARD ======== */
+/* ========================== */
+#dashboard {}
+
+#dashboard .dashboard-header {
+    margin: 0;
+    background-color: #f75d5c;
+}
+
+.dashboard-item {
+    background-color: ;
+}
+
+.dashboard-item .action-icon {
+    background-color: #fff;
+    color: #f75d5c;
+}
+
+/* ========================== */
 /* ====== MEDIA QUERIES ===== */
 /* ========================== */
 

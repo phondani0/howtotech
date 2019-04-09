@@ -37,7 +37,11 @@ h5 {
     margin: 0 10px;
 }
 
-.section_header {}
+#logo {
+    height: 54px !important;
+}
+
+/* .section_header {} */
 
 .post a {
     color: inherit !important;
@@ -98,7 +102,7 @@ footer {
         display: block;
         width: 50%;
         margin: -5px auto;
-        border-bottom: 3px solid crimson;
+        border-bottom: 3px solid #E95254;
         border-radius: 5px;
     }
 
@@ -116,8 +120,11 @@ footer {
 /* max-width */
 @media only screen and (max-width:991.98px) {
     .navbar {
-        height: 80px;
-        padding-top: 0 !important;
+        height: 70px;
+    }
+
+    #logo {
+        height: 42px !important;
     }
 
     .navbar-toggler {
@@ -132,7 +139,7 @@ footer {
         z-index: 9999;
         margin: 0;
         position: absolute;
-        top: 65px;
+        top: 71px;
         left: 0;
         right: 0;
         background-color: rgb(31, 31, 31) !important;

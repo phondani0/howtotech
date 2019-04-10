@@ -35,7 +35,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-
+    <script
+        src="https://cloud.tinymce.com/5/tinymce.min.js?apiKey=5c5dggjgn41gslpp0ozsgeklrxj7tmy99h3tfvzffuvxv868"></script>
     <script>
 
         $(document).ready(() => {
@@ -48,6 +49,9 @@
             $('a[href="' + this.location.pathname + '"]').addClass('active')
         });
 
+        tinymce.init({
+            selector: '#post-body'
+        });
     </script>
 </body>
 

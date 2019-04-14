@@ -68,7 +68,7 @@ router.post('/', (req, res) => {
     const post = {
         'title': req.body.title,
         'body': req.body.body,
-        'category': req.body.category,
+        'category': req.body.category.toLowerCase(),
         'status': req.body.status,
         'allowComments': allowComments
     }
@@ -89,7 +89,7 @@ router.put('/:id', (req, res) => {
     const updatedPost = {
         title: req.body.title,
         body: req.body.body,
-        category: req.body.category,
+        category: req.body.category.toLowerCase(),
         status: req.body.status,
         allowComments: false
     }

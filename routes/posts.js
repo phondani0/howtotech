@@ -143,4 +143,28 @@ router.get('/', (req, res) => {
         })
 });
 
+router.post('/comment/:id', (req, res) => {
+    const newComment = {
+        commentBody: req.body.commentBody
+    }
+
+    Post.findOneAndUpdate({
+            _id: req.params.id,
+            allowComments: true
+        }, {
+            $push: {
+                comments: {
+                    $each: [newComment],
+                    $position: 0
+                }
+            }
+        }).then((post) => {
+            res.redirect(`/posts/show/${post.id}`);
+        })
+        .catch((err) => {
+            console.log(`Error: ${err.message}`);
+            res.status(500).send();
+        });
+});
+
 module.exports = router;

@@ -84,6 +84,7 @@ footer {
 /* ========================== */
 /* ======= DASHBOARD ======== */
 /* ========================== */
+
 #dashboard {}
 
 #dashboard .dashboard-header {
@@ -97,6 +98,27 @@ footer {
 
 .dashboard-item .action-icon {
     background-color: #fff;
+    color: #f75d5c;
+}
+
+/* ========================== */
+/* ========== POST ========== */
+/* ========================== */
+
+#post-comments {}
+
+.comments_item {
+    position: relative;
+}
+
+.comment_delete {
+    position: absolute;
+    top: 8px;
+    right: 5px;
+    background-color: transparent;
+    text-transform: uppercase;
+    border: none;
+    font-size: 18px;
     color: #f75d5c;
 }
 

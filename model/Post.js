@@ -30,7 +30,21 @@ const postSchema = new Schema({
     date: {
         type: String,
         default: Date.now
-    }
+    },
+    comments: [{
+        commentBody: {
+            type: String,
+            required: true
+        },
+        createdAt: {
+            type: String,
+            default: Date.now
+        },
+        // commentUser: {
+        //     type: Schema.Types.ObjectId,
+        //     ref: 'users'
+        // },
+    }]
 });
 
 mongoose.model('posts', postSchema, 'posts');

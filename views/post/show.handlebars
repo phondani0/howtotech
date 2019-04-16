@@ -1,11 +1,46 @@
-<h1 class="my-3">{{post.title}}</h1>
+<div class="my-3"></div>
+<a class="text-danger text-uppercase" href="/posts/?category={{post.category}}">{{post.category}}</a>
+<h1 class="py-2">{{post.title}}</h1>
+<div class="my-3 my-sm-4">
+    <div class="">{{{post.body}}}</div>
+    <p class=""><small class="text-muted">Last updated 3 mins ago</small></p>
+</div>
 
-<div class="card my-3 my-sm-4">
-    <div class="">
-        <img src="https://lorempixel.com/400/200" class="card-img" alt="...">
-    </div>
-    <div class="card-body">
-        <p class="card-text">{{{post.body}}}</p>
-        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+<div class="row">
+    <div class="col-md-10">
+        <div id="post-comments">
+            <div id="add-comment">
+                <form action="/posts/comment/{{post._id}}" method="POST">
+                    <div class="form-group">
+                        <label for="#comment">Leave a Comment</label>
+                        <textarea class="form-control p-2" id="comment" name="commentBody" type="text"
+                            placeholder="Your Comment Here" rows="4"></textarea>
+                    </div>
+                    <input class="btn btn-primary form-control" type="submit" value="POST">
+                </form>
+            </div>
+            <div class="py-3" id="show-comments">
+                {{#each post.comments}}
+                <div class="comments_item">
+                    <div class="card card-body my-3 d-flex flex-row">
+                        <div class="">
+                            <img class="rounded-circle" src="https://picsum.photos/64" alt="">
+                        </div>
+                        <div class="ml-4">
+                            <div class="comment_user-name">
+                                <strong>userdied</strong>
+                            </div>
+                            <div class="comment_body pt-2">
+                                <small>{{{commentBody}}}</small>
+                            </div>
+                        </div>
+                    </div>
+                    <form action="/posts/comment/{{post._id}}?c_id={{_id}}" method="POST">
+                        <button class="comment_delete" type="submit"><i class="fa fa-trash"></i></button>
+                    </form>
+                </div>
+                {{/each}}
+            </div>
+        </div>
     </div>
 </div>

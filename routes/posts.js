@@ -37,7 +37,7 @@ router.get('/delete/:id', (req, res) => {
         .catch((err) => {
             console.log(`Error: ${err}`);
         })
-})
+});
 
 /*============================
 ========= API-ROUTES ========= 
@@ -147,7 +147,6 @@ router.post('/comment/:id', (req, res) => {
     const newComment = {
         commentBody: req.body.commentBody
     }
-
     Post.findOneAndUpdate({
             _id: req.params.id,
             allowComments: true
@@ -158,7 +157,25 @@ router.post('/comment/:id', (req, res) => {
                     $position: 0
                 }
             }
-        }).then((post) => {
+        })
+        .then((post) => {
+            res.redirect(`/posts/show/${post.id}`);
+        })
+        .catch((err) => {
+            console.log(`Error: ${err.message}`);
+            res.status(500).send();
+        });
+});
+
+router.delete('/comment/:id', (req, res) => {
+    Post.findByIdAndUpdate(req.params.id, {
+            $pull: {
+                comments: {
+                    _id: req.query.c_id
+                }
+            }
+        })
+        .then((post) => {
             res.redirect(`/posts/show/${post.id}`);
         })
         .catch((err) => {

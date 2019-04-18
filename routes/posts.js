@@ -168,7 +168,9 @@ router.post('/comment/:id', (req, res) => {
 });
 
 router.delete('/comment/:id', (req, res) => {
-    Post.findByIdAndUpdate(req.params.id, {
+    Post.findOneAndUpdate({
+            _id: req.params.id
+        }, {
             $pull: {
                 comments: {
                     _id: req.query.c_id

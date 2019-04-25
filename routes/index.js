@@ -49,4 +49,9 @@ router.get('/admin/posts', (req, res) => {
         })
 });
 
+// Get Pages
+router.get('/admin/pages', (req, res) => {
+    res.render('admin/pages');
+});
+
 module.exports = router;

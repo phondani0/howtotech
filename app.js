@@ -19,9 +19,13 @@ mongoose.connect(mongodb_uri, {
         console.log(`Error: ${e.message}`);
     });
 
+// Supress the deprication warning for FindAndModify
+mongoose.set('useFindAndModify', false);
+
 // import routes
 const index = require('./routes/index');
 const posts = require('./routes/posts');
+const pages = require('./routes/pages');
 
 const app = express();
 
@@ -57,21 +61,28 @@ app.use((req, res, next) => {
 // Routes
 app.use('/', index);
 app.use('/posts', posts);
+app.use('pages', pages);
 
-// Log errors
+// Handle  Errors
+
+app.use((req, res, next) => {
+    let error = new Error('Not Found');
+    error.status = 404;
+    next(error);
+});
+
 app.use((err, req, res, next) => {
     if (err) {
-        console.log(`Error: ${err.message}`);
+        console.log(`Error: ${err.message} Status: ${err.status}`);
     }
-    return res.status(500).send();
+    return res.status(err.status || 500).send();
 });
 
 const port = process.env.PORT || 3000;
 
-app.listen(port, (err) => {
-    if (err) {
-        console.log(`Error: ${err.message}`);
-    } else {
-        console.log(`Server started on port ${port}`);
-    }
+app.listen(port, () => {
+    console.log(`Server started on port ${port}`);
+}).on('error', (err) => {
+    console.log('\x1b[31m%s\x1b[0m', 'Unable to start the server');
+    console.log(`Error: ${err.message}`);
 });

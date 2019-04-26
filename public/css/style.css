@@ -29,11 +29,19 @@ h5 {
 /* ========================== */
 /* ========= GLOBAL ========= */
 /* ========================== */
-
 .navbar {
     box-shadow: rgba(0, 0, 0, 0.22) 0px 0px 3px 0px;
-    height: 65px;
+    height: 90px;
     font-family: 'Roboto Slab', 'sans' !important;
+}
+
+.navbar .navbar-nav li.active::after {
+    content: "";
+    display: block;
+    width: 50%;
+    margin: -5px auto;
+    border-bottom: 3px solid #E95254;
+    border-radius: 5px;
 }
 
 .navbar a.nav-link {
@@ -105,7 +113,7 @@ h5 {
 }
 
 .post .card {
-    min-height: 410px;
+    min-height: 370px;
 }
 
 .post a {
@@ -216,38 +224,31 @@ h5 {
 /* ====== MEDIA QUERIES ===== */
 /* ========================== */
 
-@media only screen and (min-width:768px) {
-    .post .card {
-        min-height: 390px;
-    }
-}
-
-@media only screen and (min-width:992px) {
-    .navbar {
-        box-shadow: rgba(0, 0, 0, 0.22) 0px 0px 3px 0px;
-        height: 90px;
+@media only screen and (max-width:1199.98px) {
+    .header_content {
+        padding: 0 170px;
     }
 
-    .navbar .navbar-nav li.active:after {
-        content: "";
-        display: block;
-        width: 50%;
-        margin: -5px auto;
-        border-bottom: 3px solid #E95254;
-        border-radius: 5px;
+    .header_content p {
+        font-size: 32px;
+    }
+
+    .header_content span {
+        font-size: 20px;
     }
 
     .post .card {
-        min-height: 370px;
+        min-height: 354px;
     }
 }
 
-@media only screen and (min-width:1200px) {}
-
-/* max-width */
 @media only screen and (max-width:991.98px) {
     .navbar {
         height: 70px;
+    }
+
+    .navbar .navbar-nav li.active::after {
+        display: none;
     }
 
     #logo {
@@ -266,7 +267,7 @@ h5 {
         z-index: 9999;
         margin: 0;
         position: absolute;
-        top: 71px;
+        top: 70px;
         left: 0;
         right: 0;
         background-color: rgb(31, 31, 31) !important;
@@ -289,6 +290,22 @@ h5 {
         color: #fff !important;
     }
 
+    .post .card {
+        min-height: 355px;
+    }
+
+    .header_content {
+        padding: 0 150px;
+    }
+
+    .header_content p {
+        font-size: 30px;
+    }
+
+    .header_content span {
+        font-size: 18px;
+    }
+
     .post-category,
     .post-category:hover {
         background-color: rgb(17, 17, 17);
@@ -296,5 +313,31 @@ h5 {
 
     .post_header {
         font-size: 32px;
+    }
+}
+
+@media only screen and (max-width:767.98px) {
+    .navbar {
+        height: 65px;
+    }
+
+    .navbar-collapse {
+        top: 65px;
+    }
+
+    .header_content {
+        padding: 0 30px;
+    }
+
+    .header_content p {
+        font-size: 26px;
+    }
+
+    .header_content span {
+        font-size: 16px;
+    }
+
+    .post .card {
+        min-height: 0px;
     }
 }

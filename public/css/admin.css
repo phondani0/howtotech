@@ -1,0 +1,25 @@
+/* ========================== */
+/* ======= DASHBOARD ======== */
+/* ========================== */
+
+#dashboard {}
+
+#dashboard .dashboard-header {
+    margin: 0;
+    background-color: #f75d5c;
+}
+
+.dashboard-item {
+    /* background-color: ; */
+}
+
+.dashboard-item .action-icon {
+    background-color: #fff;
+    color: #f75d5c;
+}
+
+/* Add Post */
+#header_img-upload {
+    /* display: block; */
+    margin: 0 10px;
+}

@@ -146,7 +146,6 @@ h5 {
     color: #333;
 }
 
-
 /* ========================== */
 /* ========== POST ========== */
 /* ========================== */
@@ -186,26 +185,6 @@ h5 {
 
 .post_header {
     font-weight: bold;
-}
-
-/* ========================== */
-/* ======= DASHBOARD ======== */
-/* ========================== */
-
-#dashboard {}
-
-#dashboard .dashboard-header {
-    margin: 0;
-    background-color: #f75d5c;
-}
-
-.dashboard-item {
-    /* background-color: ; */
-}
-
-.dashboard-item .action-icon {
-    background-color: #fff;
-    color: #f75d5c;
 }
 
 /* ========================== */

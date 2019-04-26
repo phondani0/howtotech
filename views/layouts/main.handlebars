@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/admin.css">
 </head>
 
 <body>
@@ -39,22 +40,8 @@
         crossorigin="anonymous"></script>
     <script
         src="https://cloud.tinymce.com/5/tinymce.min.js?apiKey=5c5dggjgn41gslpp0ozsgeklrxj7tmy99h3tfvzffuvxv868"></script>
-    <script>
-
-        $(document).ready(() => {
-            //For navbar
-            $('ul.navbar-nav li.active').removeClass('active');
-            $('a[href="' + this.location.pathname + '"]').parents('li,ul').addClass('active');
-
-            //For nav tabs
-            $('.nav-tabs a.active').removeClass('active');
-            $('a[href="' + this.location.pathname + '"]').addClass('active')
-        });
-
-        tinymce.init({
-            selector: '#post-body'
-        });
-    </script>
+    <script src="/js/main.js"></script>
+    <script src="/js/admin.js"></script>
 </body>
 
 </html>

@@ -1,7 +1,7 @@
 <h1 class="py-3">Add Post</h1>
 <div class="row">
     <div class="col-sm-12 mb-5">
-        <form action="/posts" method="POST">
+        <form action="/posts" method="POST" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="title">Title</label>
                 <input class="form-control" id="title" type="text" name="title" placeholder=" Title of the Post"
@@ -9,7 +9,7 @@
             </div>
             <div class="form-group">
                 <label for="">Header Image</label>
-                <input id="upload_file" class="d-none" type="file">
+                <input id="upload_file" class="d-none" name="header_img" type="file">
                 <button id="header_img-upload" class="btn btn-primary" type="button">CHOOSE A IMAGE</button>
                 <span id="upload_text"><small>No file chosen</small></span>
             </div>

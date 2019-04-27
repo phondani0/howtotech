@@ -18,7 +18,7 @@ function replace_btn(e) {
     real_btn.addEventListener('change', (e) => {
         console.log(real_btn.value);
         if (real_btn.value) {
-            const allowTypes = ['image/jpeg', 'image/png', 'image/svg'];
+            const allowTypes = ['image/jpeg', 'image/png'];
             const isValidType = real_btn.files ? allowTypes.indexOf(real_btn.files[0].type) > -1 ? true : false : false;
             // console.log(isValidType);
             if (isValidType === true) {

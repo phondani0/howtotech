@@ -38,7 +38,8 @@ app.engine('handlebars', exphbs({
     helpers: {
         dateString: hbs.dateString,
         getDate: hbs.getDate,
-        select: hbs.select
+        select: hbs.select,
+        toBase64: hbs.toBase64
     }
 }));
 app.set('view engine', 'handlebars');
@@ -64,7 +65,6 @@ app.use('/posts', posts);
 app.use('pages', pages);
 
 // Handle  Errors
-
 app.use((req, res, next) => {
     let error = new Error('Not Found');
     error.status = 404;

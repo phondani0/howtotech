@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const multer = require('multer');
 
 // import Post model
 require('../model/Post');
@@ -7,6 +8,12 @@ require('../model/Post');
 const Post = mongoose.model('posts');
 
 const router = express.Router();
+
+// config multer
+const storage = multer.memoryStorage();
+const upload = multer({
+    storage: storage
+});
 
 // add post
 router.get('/add', (req, res) => {
@@ -39,14 +46,15 @@ router.get('/delete/:id', (req, res) => {
         })
 });
 
-/*============================
+/* ===========================
 ========= API-ROUTES ========= 
-============================*/
+=========================== */
 
 // show post
 router.get('/show/:id', (req, res) => {
     Post.findById(req.params.id)
         .then((post) => {
+            console.log(post.images.header_image);
             res.render('post/show', {
                 post
             });
@@ -58,20 +66,29 @@ router.get('/show/:id', (req, res) => {
 });
 
 // add new post
-router.post('/', (req, res) => {
+router.post('/', upload.single('header_img'), (req, res) => {
     let allowComments = false;
-
     if (req.body.allowComments == 'on') {
         allowComments = true;
     }
+    const allowTypes = ['image/jpeg', 'image/png'];
+
+    const headerImgBuffer = allowTypes.indexOf(req.file.mimetype) > -1 && req.file.fieldname === 'header_img' && req.file.buffer ? req.file.buffer : '';
 
     const post = {
         'title': req.body.title,
         'body': req.body.body,
+        'images': {
+            header_image: {
+                data: headerImgBuffer,
+                contentType: req.file.mimetype
+            }
+        },
         'category': req.body.category.toLowerCase(),
         'status': req.body.status,
         'allowComments': allowComments
     }
+
     new Post(post)
         .save()
         .then((doc) => {

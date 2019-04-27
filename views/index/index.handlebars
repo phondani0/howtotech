@@ -14,7 +14,8 @@
             <div class="post">
                 <a href="/posts/show/{{_id}}">
                     <div class="card">
-                        <img src="https://lorempixel.com/400/250" class="card-img" alt=".">
+                        <img src="data:{{images.headerImage.type}};base64,{{toBase64 images.header_image.data}}"
+                            class="card-img" alt=".">
                         <div class="post-category text-white">
                             <a href="/posts?category={{category}}">{{category}}</a>
                         </div>

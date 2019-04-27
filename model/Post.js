@@ -15,10 +15,12 @@ const postSchema = new Schema({
         type: String,
         required: true
     },
-    images: [{
-        data: Buffer,
-        contentType: String
-    }],
+    images: {
+        header_image: {
+            data: Buffer,
+            contentType: String
+        }
+    },
     status: {
         type: String,
         required: true

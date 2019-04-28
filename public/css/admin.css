@@ -18,8 +18,34 @@
     color: #f75d5c;
 }
 
-/* Add Post */
+/* Add Post & Edit post*/
 #header_img-upload {
     /* display: block; */
-    margin: 0 10px;
+    /* margin: 0 10px; */
+}
+
+#header_img-container {
+    position: relative;
+}
+
+#header_img-container img {
+    height: 250px;
+    max-width: 100%;
+    cursor: pointer;
+}
+
+#header_img-container img:hover {
+    /* opacity: 0.8; */
+}
+
+#header_img-container #remove_img {
+    position: absolute;
+    /* bottom: 56px; */
+    display: none;
+    text-transform: uppercase;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.7);
+    opacity: 0.7;
+    font-size: 40px;
+    cursor: pointer;
 }

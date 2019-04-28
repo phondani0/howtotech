@@ -7,6 +7,24 @@
                 <input class="form-control" id="title" type="text" name="title" value="{{post.title}}"
                     placeholder=" Title of the Post" required>
             </div>
+            <div class="d-flex flex-wrap justify-content-between">
+                <div class="form-group mr-3">
+                    <label class="mr-3" for="">Header Image</label>
+                    <input id="upload_file" class="d-none" name="header_img" type="file">
+                    <div class="d-flex">
+                        <button id="header_img-upload" class="d-block btn btn-primary" type="button">CHOOSE A
+                            IMAGE</button>
+                        <span class="pl-3" id="upload_text"><small>No file chosen</small></span>
+                    </div>
+                </div>
+                <div class="d-none" id="header_img-container">
+                    <img id="header_img"
+                        src="data:{{post.images.header_image.type}};base64,{{toBase64 post.images.header_image.data}}"
+                        alt="header_img">
+                    <div id="remove_img">delete</div>
+                    <p class="py-2" id="uploaded_img-size"></p>
+                </div>
+            </div>
             <div class="form-group">
                 <label for="title">Category</label>
                 <input class="form-control" id="category" type="text" name="category" value="{{post.category}}"

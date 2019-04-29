@@ -49,3 +49,10 @@
     font-size: 40px;
     cursor: pointer;
 }
+
+/* login */
+#login_section {
+    position: relative;
+    top: 50%;
+    transform: translateY(50%);
+}

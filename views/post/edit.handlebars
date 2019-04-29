@@ -1,7 +1,7 @@
 <h1 class="py-3">Edit Post</h1>
 <div class="row">
     <div class="col-sm-12 mb-5">
-        <form action="/posts/{{post._id}}?_method=PUT" method="POST">
+        <form action="/posts/{{post._id}}?_method=PUT" method="POST" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="title">Title</label>
                 <input class="form-control" id="title" type="text" name="title" value="{{post.title}}"

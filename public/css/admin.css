@@ -51,7 +51,8 @@
 }
 
 /* login */
-#login_section {
+#login_section,
+#signup_section {
     position: relative;
     top: 50%;
     transform: translateY(50%);

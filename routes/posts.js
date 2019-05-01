@@ -73,16 +73,20 @@ router.post('/', upload.single('header_img'), (req, res) => {
     }
     const allowTypes = ['image/jpeg', 'image/png'];
 
-    const headerImgBuffer = allowTypes.indexOf(req.file.mimetype) > -1 && req.file.fieldname === 'header_img' && req.file.buffer ? req.file.buffer : '';
+    let headerImg;
+    if (req.file) {
+        const headerImgBuffer = req.file && allowTypes.indexOf(req.file.mimetype) > -1 && req.file.fieldname === 'header_img' && req.file.buffer ? req.file.buffer : '';
 
+        headerImg = {
+            data: headerImgBuffer,
+            contentType: req.file.mimetype
+        }
+    }
     const post = {
         'title': req.body.title,
         'body': req.body.body,
         'images': {
-            header_image: {
-                data: headerImgBuffer,
-                contentType: req.file.mimetype
-            }
+            header_image: headerImg
         },
         'category': req.body.category.toLowerCase(),
         'status': req.body.status,
@@ -102,17 +106,35 @@ router.post('/', upload.single('header_img'), (req, res) => {
 });
 
 // update post
-router.put('/:id', (req, res) => {
-    const updatedPost = {
-        title: req.body.title,
-        body: req.body.body,
-        category: req.body.category.toLowerCase(),
-        status: req.body.status,
-        allowComments: false
+router.put('/:id', upload.single('header_img'), (req, res) => {
+    console.log(req.files);
+    console.log(req.body);
+    let allowComments = false;
+    if (req.body.allowComments == 'on') {
+        allowComments = true;
+    }
+    const allowTypes = ['image/jpeg', 'image/png'];
+    let headerImg;
+
+    if (req.file) {
+        const headerImgBuffer = req.file && allowTypes.indexOf(req.file.mimetype) > -1 && req.file.fieldname === 'header_img' && req.file.buffer ? req.file.buffer : '';
+        headerImg = {
+            data: headerImgBuffer,
+            contentType: req.file.mimetype
+        }
+    } else {
+        console.log('headerImg not found');
     }
 
-    if (req.body.allowComments === 'on') {
-        updatedPost.allowComments = true
+    const updatedPost = {
+        'title': req.body.title,
+        'body': req.body.body,
+        'images': {
+            header_image: headerImg
+        },
+        'category': req.body.category.toLowerCase(),
+        'status': req.body.status,
+        'allowComments': allowComments
     }
 
     Post.findById(req.params.id)
@@ -121,8 +143,9 @@ router.put('/:id', (req, res) => {
             doc.updateOne(updatedPost, (err) => {
                 if (!err) {
                     return res.redirect('/admin/posts');
+                } else {
+                    console.log(`Error: ${err}`);
                 }
-                //else handle error @TODO
             });
         })
         .catch((err) => {

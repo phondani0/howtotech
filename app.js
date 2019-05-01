@@ -4,6 +4,7 @@ const exphbs = require('express-handlebars');
 const methodOverride = require('method-override')
 const hbs = require('./helpers/hbs');
 const passport = require('passport');
+const session = require('express-session');
 
 // import mongodb_uri
 const {
@@ -58,8 +59,15 @@ app.use(express.json());
 // Load Passport config
 require('./config/passport')(passport);
 
+app.use(session({
+    secret: 'aodfajdaf',
+    resave: false,
+    saveUninitialized: true
+}));
+
 // Init Passport
 app.use(passport.initialize());
+app.use(passport.session());
 
 // log req method and path
 app.use((req, res, next) => {

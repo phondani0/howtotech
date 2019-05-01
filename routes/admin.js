@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const passport = require('passport');
+const bcrypt = require('bcrypt');
 
 // import Post model
 require('../model/Post');
@@ -22,7 +23,6 @@ router.get('/login', (req, res) => {
 
 router.post('/login', (req, res, next) => {
     passport.authenticate('local', {
-        session: false,
         successRedirect: '/admin',
         failureRedirect: '/admin/login',
         failureFlash: false
@@ -45,15 +45,29 @@ router.post('/signup', (req, res) => {
                     'username': req.body.username,
                     'password': req.body.password
                 });
-                newUser.save()
-                    .then(user => {
-                        res.redirect('/admin/login');
+                const saltRounds = 10;
+                bcrypt.hash(newUser.password, saltRounds)
+                    .then(hash => {
+                        newUser.password = hash;
+                    })
+                    .then(() => {
+                        newUser.save()
+                            .then(user => {
+                                console.log(`AdminUser: ${user}`);
+                                res.redirect('/admin/login');
+                            })
+                            .catch(err => {
+                                console.log(err);
+                                res.sendStatus(500);
+                            });
                     })
                     .catch(err => {
-                        console.log(err);
-                        res.sendStatus(500);
+                        console.log(`Error: ${err}`);
                     });
             }
+        })
+        .catch((err) => {
+            console.log(`Error: ${err.message} - admin.js`);
         });
 });
 

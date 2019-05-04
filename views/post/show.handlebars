@@ -1,9 +1,17 @@
-<div class="my-3"></div>
-<a class="text-danger text-uppercase" href="/posts/?category={{post.category}}">{{post.category}}</a>
-<h1 class="py-2 post_header">{{post.title}}</h1>
+<div class="post_header-img"
+    style="background-image: url('data:{{post.images.headerImage.type}};base64,{{toBase64 post.images.header_image.data}}');">
+    <div class="post_header-content text-center">
+        <div class="post_header-content">
+            <a href="/posts/?category={{post.category}}">{{post.category}}</a>
+            <h1 class="py-4 px-2 post_header">{{post.title}}</h1>
+            <p class="post_header-credits">By Ankit Phondani | {{getDate post.date}}</p>
+        </div>
+    </div>
+</div>
+<div class="post_spacer"></div>
 <div class="my-3 my-sm-4">
     <div class="post_body">{{{post.body}}}</div>
-    <p class=""><small class="text-muted">Last updated &nbsp;{{getDate post.date}}</small></p>
+    <p><small class="text-muted">Last updated &nbsp;{{getDate post.date}}</small></p>
 </div>
 
 <div class="row">

@@ -101,6 +101,7 @@ h5 {
     font-size: 36px;
     font-family: 'Roboto Slab', sans-serif;
     font-weight: 700;
+    text-transform: uppercase;
 }
 
 .header_content span {
@@ -115,8 +116,20 @@ h5 {
 }
 
 .post .card {
-    min-height: 370px;
+    height: 370px;
+    overflow: hidden;
 }
+
+.post .post-body {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    background-color: #fff;
+}
+
+.card-img {}
 
 .post a {
     color: inherit !important;
@@ -142,10 +155,10 @@ h5 {
 }
 
 .post-title {
-    font-size: 20px;
-    line-height: 24px;
-    font-weight: bold;
-    color: #333;
+    font-size: 26px;
+    line-height: 26px;
+    color: #444;
+    text-transform: uppercase;
 }
 
 /* ========================== */
@@ -154,6 +167,48 @@ h5 {
 
 .post_body p {
     font-size: 19px;
+}
+
+.post_spacer {
+    padding-top: 31.5rem;
+}
+
+.post_header-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 31.25rem;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.post_header-img::after {
+    content: "";
+    position: absolute;
+    background: #000;
+    opacity: 0.5;
+    height: 100%;
+    width: 100%;
+}
+
+.post_header-content {
+    z-index: 10;
+    color: #fff;
+}
+
+.post_header-content a {
+    border: 2px solid #f4f4f4;
+    border-radius: 4px;
+    background-color: transparent;
+    color: #f75d5c;
+    font-weight: bold;
+    padding: 2px 8px;
+    text-transform: uppercase;
 }
 
 .comments_item {
@@ -307,6 +362,10 @@ h5 {
         top: 65px;
     }
 
+    .nav-tabs .nav-link {
+        padding: .5rem;
+    }
+
     .header_content {
         padding: 0 30px;
     }
@@ -320,6 +379,20 @@ h5 {
     }
 
     .post .card {
-        min-height: 0px;
+        min-height: 400px;
+    }
+
+    .post_spacer {
+        padding-top: 23rem;
+    }
+
+    .post_header-img {
+        height: 350px;
+    }
+
+    /* dashboard */
+    .dashboard-item .card {
+        box-shadow: none;
+        border: none;
     }
 }

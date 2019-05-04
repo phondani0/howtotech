@@ -7,16 +7,17 @@
             <div class="post">
                 <a href="/posts/show/{{_id}}">
                     <div class="card">
-                        <img src="https://lorempixel.com/400/250" class="card-img" alt="...">
+                        <img src="data:{{images.headerImage.type}};base64,{{toBase64 images.header_image.data}}"
+                            class="card-img" alt=".">
                         <div class="post-category text-white">
                             <a href="/posts?category={{category}}">{{category}}</a>
                         </div>
-                        <div class="card-body">
-                            <div class="pb-3 text-muted">
-                                <small>{{getDate date}}</small>
+                        <div class="card-body post-body">
+                            <div class="text-muted">
+                                <p>{{getDate date}}</p>
                             </div>
                             <a href="/posts/show/{{_id}}">
-                                <h3 class="card-title post-header">{{title}}</h3>
+                                <h3 class="card-title post-title">{{title}}</h3>
                             </a>
                         </div>
                     </div>

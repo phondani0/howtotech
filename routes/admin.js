@@ -29,6 +29,12 @@ router.post('/login', (req, res, next) => {
     })(req, res, next);
 });
 
+// Logout
+router.get('/logout', ensureAuthenticated, (req, res) => {
+    req.logout();
+    res.redirect('/');
+});
+
 router.get('/signup', (req, res) => {
     res.render('admin/signup');
 });

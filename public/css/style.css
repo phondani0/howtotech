@@ -158,7 +158,7 @@ h5 {
     font-size: 26px;
     line-height: 26px;
     color: #444;
-    text-transform: uppercase;
+    text-transform: capitalize;
 }
 
 /* ========================== */
@@ -194,6 +194,11 @@ h5 {
     opacity: 0.5;
     height: 100%;
     width: 100%;
+}
+
+.post_header-text {
+    font-weight: bold;
+    text-transform: capitalize;
 }
 
 .post_header-content {
@@ -240,9 +245,6 @@ h5 {
     text-decoration: none !important;
 }
 
-.post_header {
-    font-weight: bold;
-}
 
 /* ========================== */
 /* ======= FOOTER ======== */
@@ -253,6 +255,7 @@ h5 {
     bottom: 0;
     width: 100%;
     color: #fff;
+    text-transform: uppercase;
     background-color: #111;
     padding: 8px 0;
 }
@@ -348,7 +351,7 @@ h5 {
         background-color: rgb(17, 17, 17);
     }
 
-    .post_header {
+    .post_header-text {
         font-size: 32px;
     }
 }

@@ -69,6 +69,12 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+// Global vars
+app.use((req, res, next) => {
+    res.locals.user = req.user || null;
+    next();
+});
+
 // log req method and path
 app.use((req, res, next) => {
     console.log(`Req : ${req.method}  ${req.url}`);

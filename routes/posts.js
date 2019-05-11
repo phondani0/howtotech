@@ -5,6 +5,10 @@ const multer = require('multer');
 // import Post model
 require('../model/Post');
 
+const {
+    ensureAuthenticated
+} = require('../helpers/auth');
+
 const Post = mongoose.model('posts');
 
 const router = express.Router();
@@ -16,11 +20,11 @@ const upload = multer({
 });
 
 // add post
-router.get('/add', (req, res) => {
+router.get('/add', ensureAuthenticated, (req, res) => {
     res.render('post/add');
 });
 
-router.get('/edit/:id', (req, res) => {
+router.get('/edit/:id', ensureAuthenticated, (req, res) => {
     Post.findById(req.params.id)
         .then((post) => {
             // console.log(post);
@@ -33,7 +37,7 @@ router.get('/edit/:id', (req, res) => {
         })
 });
 
-router.get('/delete/:id', (req, res) => {
+router.get('/delete/:id', ensureAuthenticated, (req, res) => {
     Post.findById(req.params.id)
         .then((post) => {
             console.log(post);
@@ -66,7 +70,7 @@ router.get('/show/:id', (req, res) => {
 });
 
 // add new post
-router.post('/', upload.single('header_img'), (req, res) => {
+router.post('/', ensureAuthenticated, upload.single('header_img'), (req, res) => {
     let allowComments = false;
     if (req.body.allowComments == 'on') {
         allowComments = true;
@@ -106,7 +110,7 @@ router.post('/', upload.single('header_img'), (req, res) => {
 });
 
 // update post
-router.put('/:id', upload.single('header_img'), (req, res) => {
+router.put('/:id', ensureAuthenticated, upload.single('header_img'), (req, res) => {
     console.log(req.files);
     console.log(req.body);
     let allowComments = false;
@@ -154,7 +158,7 @@ router.put('/:id', upload.single('header_img'), (req, res) => {
 });
 
 // delete post
-router.delete('/:id', (req, res) => {
+router.delete('/:id', ensureAuthenticated, (req, res) => {
     Post.findByIdAndDelete(req.params.id)
         .then(() => {
             console.log('Post deleted successfully');
@@ -207,7 +211,7 @@ router.post('/comment/:id', (req, res) => {
         });
 });
 
-router.delete('/comment/:id', (req, res) => {
+router.delete('/comment/:id', ensureAuthenticated, (req, res) => {
     Post.findOneAndUpdate({
             _id: req.params.id
         }, {

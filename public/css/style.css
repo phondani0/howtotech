@@ -225,6 +225,10 @@ h5 {
     font-weight: bold;
 }
 
+.comment_user-img img {
+  width: 84px;
+}
+
 .comment_delete {
     position: absolute;
     top: 8px;

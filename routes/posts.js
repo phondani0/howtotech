@@ -51,14 +51,13 @@ router.get('/delete/:id', ensureAuthenticated, (req, res) => {
 });
 
 /* ===========================
-========= API-ROUTES ========= 
+========= API-ROUTES =========
 =========================== */
 
 // show post
 router.get('/show/:id', (req, res) => {
     Post.findById(req.params.id)
         .then((post) => {
-            console.log(post.images.header_image);
             res.render('post/show', {
                 post
             });
@@ -189,7 +188,11 @@ router.get('/', (req, res) => {
 
 router.post('/comment/:id', (req, res) => {
     const newComment = {
-        commentBody: req.body.commentBody
+        commentBody: req.body.commentBody,
+        commentUser: {
+          name: req.body.name,
+          email: req.body.email
+        }
     }
     Post.findOneAndUpdate({
             _id: req.params.id,

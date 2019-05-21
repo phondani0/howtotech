@@ -42,10 +42,16 @@ const postSchema = new Schema({
             type: String,
             default: Date.now
         },
-        // commentUser: {
-        //     type: Schema.Types.ObjectId,
-        //     ref: 'users'
-        // },
+        commentUser: {
+          name : {
+            type: String,
+            required: true
+          },
+          email: {
+            type: String,
+            required: true
+          }
+        },
     }]
 });
 

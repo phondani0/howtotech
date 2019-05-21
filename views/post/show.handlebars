@@ -14,15 +14,26 @@
     <p><small class="text-muted">Last updated &nbsp;{{getDate post.date}}</small></p>
 </div>
 
+<!-- comment -->
 <div class="row">
     <div class="col-md-10">
         <div id="post-comments">
-            <div id="add-comment">
+            <div id="add-comment" class="bg-white p-4 border">
                 <form action="/posts/comment/{{post._id}}" method="POST">
+                    <div class="form-group">
+                        <label for="#name">Name</label>
+                        <input class="form-control p-2" id="name" name="name" type="text"
+                            placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="#email">Email</label>
+                        <input class="form-control p-2" id="email" name="email" type="email"
+                            placeholder="Your Email" required>
+                    </div>
                     <div class="form-group">
                         <label for="#comment">Leave a Comment</label>
                         <textarea class="form-control p-2" id="comment" name="commentBody" type="text"
-                            placeholder="Your Comment Here" rows="4"></textarea>
+                            placeholder="Your Comment Here" rows="4" required></textarea>
                     </div>
                     <input class="btn btn-primary form-control" type="submit" value="POST">
                 </form>
@@ -31,12 +42,12 @@
                 {{#each post.comments}}
                 <div class="comments_item">
                     <div class="card card-body my-3 d-flex flex-row">
-                        <div class="">
-                            <img class="rounded-circle" src="https://picsum.photos/84" alt="">
+                        <div class="comment_user-img">
+                            <img class="rounded-circle" src="/img/user.png" alt="user">
                         </div>
                         <div class="ml-4">
                             <div class="comment_user-name">
-                                <p>User Died </p>
+                                <p>{{commentUser.name}}</p>
                             </div>
                             <div class="comment_body pt-2">
                                 <p>{{{commentBody}}}</p>
@@ -44,9 +55,11 @@
                             </div>
                         </div>
                     </div>
+                    {{#if ../user}}
                     <form action="/posts/comment/{{../post._id}}?c_id={{_id}}&_method=DELETE" method="POST">
                         <button class="comment_delete" type="submit"><i class="fa fa-trash"></i></button>
                     </form>
+                    {{/if}}
                 </div>
                 {{/each}}
             </div>

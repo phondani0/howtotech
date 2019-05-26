@@ -1,4 +1,4 @@
-# Blogging site by Ankit Phondani
+# Blog MVC app
 
 # Technologies used
-MongoDB, Express.js, Node.js
+MongoDB, Express.js, Handlebars.js, Node.js

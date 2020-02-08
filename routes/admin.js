@@ -14,25 +14,25 @@ const Admin = mongoose.model('admin');
 const router = express.Router();
 
 const {
-  ensureAuthenticated
+	ensureAuthenticated
 } = require('../helpers/auth');
 
 router.get('/login', (req, res) => {
-  res.render('admin/login');
+	res.render('admin/login');
 });
 
 router.post('/login', (req, res, next) => {
-  passport.authenticate('local', {
-    successRedirect: '/admin',
-    failureRedirect: '/admin/login',
-    failureFlash: false
-  })(req, res, next);
+	passport.authenticate('local', {
+		successRedirect: '/admin',
+		failureRedirect: '/admin/login',
+		failureFlash: false
+	})(req, res, next);
 });
 
 // Logout
 router.get('/logout', ensureAuthenticated, (req, res) => {
-  req.logout();
-  res.redirect('/');
+	req.logout();
+	res.redirect('/');
 });
 
 // uncomment the code for creating the new user
@@ -80,33 +80,33 @@ router.get('/logout', ensureAuthenticated, (req, res) => {
 // });
 
 router.get('/', ensureAuthenticated, (req, res) => {
-  Post.find({})
-    .then((posts) => {
-      res.render('admin/dashboard', {
-        posts
-      });
-    })
-    .catch((err) => {
-      console.log(`Error: ${err}`);
-    })
+	Post.find({})
+		.then((posts) => {
+			res.render('admin/dashboard', {
+				posts
+			});
+		})
+		.catch((err) => {
+			console.log(`Error: ${err}`);
+		})
 });
 
 router.get('/posts', ensureAuthenticated, (req, res) => {
-  Post.find({})
-    .sort('-date')
-    .then((posts) => {
-      res.render('admin/posts', {
-        posts
-      });
-    })
-    .catch((err) => {
-      console.log(`Error: ${err}`);
-    })
+	Post.find({})
+		.sort('-date')
+		.then((posts) => {
+			res.render('admin/posts', {
+				posts
+			});
+		})
+		.catch((err) => {
+			console.log(`Error: ${err}`);
+		})
 });
 
 // Get Pages
 router.get('/pages', ensureAuthenticated, (req, res) => {
-  res.render('admin/pages');
+	res.render('admin/pages');
 });
 
 module.exports = router;

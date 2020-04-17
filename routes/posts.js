@@ -26,8 +26,10 @@ router.get('/add', ensureAuthenticated, (req, res) => {
 
 router.get('/edit/:id', ensureAuthenticated, (req, res) => {
   Post.findById(req.params.id)
-    .then((post) => {
-      console.log(post);
+    .then((data) => {
+      console.log(data);
+      // handlebars issue
+      const post = JSON.parse(JSON.stringify(data));
       res.render('post/edit', {
         post
       });
@@ -40,7 +42,9 @@ router.get('/edit/:id', ensureAuthenticated, (req, res) => {
 router.get('/delete/:id', ensureAuthenticated, (req, res) => {
   Post.findById(req.params.id)
     .then((post) => {
-      console.log(post);
+      console.log(data);
+      // handlebars issue
+      const post = JSON.parse(JSON.stringify(data));
       res.render('post/delete', {
         post
       });
@@ -57,7 +61,9 @@ router.get('/delete/:id', ensureAuthenticated, (req, res) => {
 // show post
 router.get('/show/:id', (req, res) => {
   Post.findById(req.params.id)
-    .then((post) => {
+    .then((data) => {
+      // handlebars issue
+      const post = JSON.parse(JSON.stringify(data));
       res.render('post/show', {
         post
       });
@@ -175,8 +181,10 @@ router.get('/', (req, res) => {
     category: req.query.category
   })
     .sort('-date')
-    .then((posts) => {
-      // console.log(doc);
+    .then((data) => {
+      // console.log(data);
+      // handlebars issue
+      const posts = JSON.parse(JSON.stringify(data));
       res.render('post/category', {
         'posts': posts
       });

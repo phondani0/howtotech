@@ -1,36 +1,36 @@
 <div class="header_img">
-    <div class="header_content text-center">
-        <p>latest trends, latest tech, All at one place</p>
-        <span>Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
-    </div>
+  <div class="header_content text-center">
+    <p>latest trends, latest tech, All at one place</p>
+    <span>Connecting ideas and people – how tech is changing our lives.</span>
+  </div>
 </div>
 <div class="spacer"></div>
 <h2 class="py-3 section_header">Latest Posts</h2>
 <hr>
 <div class="my-3 my-sm-4">
-    <div class="row">
-        {{#each posts}}
-        <div class="col-md-6 col-lg-4 py-3 py-sm-0 p-sm-2">
-            <div class="post">
-                <a href="/posts/show/{{_id}}">
-                    <div class="card">
-                        <img src="data:{{images.headerImage.type}};base64,{{toBase64 images.header_image.data}}"
-                            class="card-img" alt=".">
-                        <div class="post-category text-white">
-                            <a href="/posts?category={{category}}">{{category}}</a>
-                        </div>
-                        <div class="card-body post-body">
-                            <div class="text-muted">
-                                <p>{{getDate date}}</p>
-                            </div>
-                            <a href="/posts/show/{{_id}}">
-                                <h3 class="card-title post-title">{{title}}</h3>
-                            </a>
-                        </div>
-                    </div>
-                </a>
+  <div class="row">
+    {{#each posts}}
+    <div class="col-md-6 col-lg-4 py-3 py-sm-0 p-sm-2">
+      <div class="post">
+        <a href="/posts/show/{{_id}}">
+          <div class="card">
+            <img src="data:{{images.headerImage.type}};base64,{{toBase64 images.header_image.data}}" class="card-img"
+              alt=".">
+            <div class="post-category text-white">
+              <a href="/posts?category={{category}}">{{category}}</a>
             </div>
-        </div>
-        {{/each}}
+            <div class="card-body post-body">
+              <div class="text-muted">
+                <p>{{getDate date}}</p>
+              </div>
+              <a href="/posts/show/{{_id}}">
+                <h3 class="card-title post-title">{{title}}</h3>
+              </a>
+            </div>
+          </div>
+        </a>
+      </div>
     </div>
+    {{/each}}
+  </div>
 </div>

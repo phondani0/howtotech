@@ -5,55 +5,56 @@
 #dashboard {}
 
 #dashboard .dashboard-header {
-    margin: 0;
-    background-color: #f75d5c;
+  margin: 0;
+  background-color: #f75d5c;
 }
 
 .dashboard-item {
-    /* background-color: ; */
+  /* background-color: ; */
 }
 
 .dashboard-item .action-icon {
-    background-color: #fff;
-    color: #f75d5c;
+  background-color: #fff;
+  color: #f75d5c;
 }
 
 /* Add Post & Edit post*/
 #header_img-upload {
-    /* display: block; */
-    /* margin: 0 10px; */
+  /* display: block; */
+  /* margin: 0 10px; */
 }
 
 #header_img-container {
-    position: relative;
+  position: relative;
 }
 
 #header_img-container img {
-    height: 250px;
-    max-width: 100%;
-    cursor: pointer;
+  height: 250px;
+  max-width: 100%;
+  cursor: pointer;
 }
 
 #header_img-container img:hover {
-    /* opacity: 0.8; */
+  /* opacity: 0.8; */
 }
 
 #header_img-container #remove_img {
-    position: absolute;
-    /* bottom: 56px; */
-    display: none;
-    text-transform: uppercase;
-    color: #fff;
-    background-color: rgba(0, 0, 0, 0.7);
-    opacity: 0.7;
-    font-size: 40px;
-    cursor: pointer;
+  position: absolute;
+  /* bottom: 56px; */
+  display: none;
+  text-transform: uppercase;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.7);
+  opacity: 0.7;
+  font-size: 40px;
+  cursor: pointer;
 }
 
 /* login */
 #login_section,
 #signup_section {
-    position: relative;
-    top: 50%;
-    transform: translateY(50%);
+  /* position: relative;
+  top: 50%;
+  transform: translateY(50%); */
+  margin: 2rem;
 }

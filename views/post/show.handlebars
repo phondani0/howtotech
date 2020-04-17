@@ -1,70 +1,68 @@
 <div class="post_header-img"
-    style="background-image: url('data:{{post.images.headerImage.type}};base64,{{toBase64 post.images.header_image.data}}');">
-    <div class="post_header-content text-center">
-        <div class="post_header-content">
-            <a href="/posts/?category={{post.category}}">{{post.category}}</a>
-            <h1 class="py-4 px-2 post_header-text">{{post.title}}</h1>
-            <p class="post_header-credits">By Ankit Phondani | {{getDate post.date}}</p>
-        </div>
+  style="background-image: url('data:{{post.images.header_image.type}};base64,{{toBase64 post.images.header_image.data}}');">
+  <div class="post_header-content text-center">
+    <div class="post_header-content">
+      <a href="/posts/?category={{post.category}}">{{post.category}}</a>
+      <h1 class="py-4 px-2 post_header-text">{{post.title}}</h1>
+      <p class="post_header-credits">By Ankit Phondani | {{getDate post.date}}</p>
     </div>
+  </div>
 </div>
 <div class="post_spacer"></div>
 <div class="my-3 my-sm-4">
-    <div class="post_body">{{{post.body}}}</div>
-    <p><small class="text-muted">Last updated &nbsp;{{getDate post.date}}</small></p>
+  <div class="post_body">{{{post.body}}}</div>
+  <p><small class="text-muted">Last updated &nbsp;{{getDate post.date}}</small></p>
 </div>
 
 <!-- comment -->
 <div class="row">
-    <div class="col-md-10">
-        <div id="post-comments">
+  <div class="col-md-10">
+    <div id="post-comments">
 
-            <div id="add-comment" class="bg-white p-4 border">
+      <div id="add-comment" class="bg-white p-4 border">
 
-                <form action="/posts/comment/{{post._id}}" method="POST">
-                    <div class="form-group">
-                        <label for="#name">Name</label>
-                        <input class="form-control p-2" id="name" name="name" type="text"
-                            placeholder="Your Name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="#email">Email</label>
-                        <input class="form-control p-2" id="email" name="email" type="email"
-                            placeholder="Your Email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="#comment">Leave a Comment</label>
-                        <textarea class="form-control p-2" id="comment" name="commentBody" type="text"
-                            placeholder="Your Comment Here" rows="4" required></textarea>
-                    </div>
-                    <input class="btn btn-primary form-control" type="submit" value="POST">
-                </form>
+        <form action="/posts/comment/{{post._id}}" method="POST">
+          <div class="form-group">
+            <label for="#name">Name</label>
+            <input class="form-control p-2" id="name" name="name" type="text" placeholder="Your Name" required>
+          </div>
+          <div class="form-group">
+            <label for="#email">Email</label>
+            <input class="form-control p-2" id="email" name="email" type="email" placeholder="Your Email" required>
+          </div>
+          <div class="form-group">
+            <label for="#comment">Leave a Comment</label>
+            <textarea class="form-control p-2" id="comment" name="commentBody" type="text"
+              placeholder="Your Comment Here" rows="4" required></textarea>
+          </div>
+          <input class="btn btn-primary form-control" type="submit" value="POST">
+        </form>
+      </div>
+      <div class="py-3" id="show-comments">
+        {{#each post.comments}}
+        <div class="comments_item">
+          <div class="card card-body my-3 d-flex flex-row">
+            <div class="comment_user-img">
+              <img class="rounded-circle" src="/img/user.png" alt="user">
             </div>
-            <div class="py-3" id="show-comments">
-                {{#each post.comments}}
-                <div class="comments_item">
-                    <div class="card card-body my-3 d-flex flex-row">
-                        <div class="comment_user-img">
-                            <img class="rounded-circle" src="/img/user.png" alt="user">
-                        </div>
-                        <div class="ml-4">
-                            <div class="comment_user-name">
-                                <p>{{commentUser.name}}</p>
-                            </div>
-                            <div class="comment_body pt-2">
-                                <p>{{{commentBody}}}</p>
-                                <small class="text-muted">{{getDate createdAt}}</small>
-                            </div>
-                        </div>
-                    </div>
-                    {{#if ../user}}
-                    <form action="/posts/comment/{{../post._id}}?c_id={{_id}}&_method=DELETE" method="POST">
-                        <button class="comment_delete" type="submit"><i class="fa fa-trash"></i></button>
-                    </form>
-                    {{/if}}
-                </div>
-                {{/each}}
+            <div class="ml-4">
+              <div class="comment_user-name">
+                <p>{{commentUser.name}}</p>
+              </div>
+              <div class="comment_body pt-2">
+                <p>{{{commentBody}}}</p>
+                <small class="text-muted">{{getDate createdAt}}</small>
+              </div>
             </div>
+          </div>
+          {{#if ../user}}
+          <form action="/posts/comment/{{../post._id}}?c_id={{_id}}&_method=DELETE" method="POST">
+            <button class="comment_delete" type="submit"><i class="fa fa-trash"></i></button>
+          </form>
+          {{/if}}
         </div>
+        {{/each}}
+      </div>
     </div>
+  </div>
 </div>

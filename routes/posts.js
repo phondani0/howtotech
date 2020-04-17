@@ -29,7 +29,7 @@ router.get('/edit/:id', ensureAuthenticated, (req, res) => {
     .then((data) => {
       console.log(data);
       // handlebars issue
-      const post = JSON.parse(JSON.stringify(data));
+      const post = data.toObject();
       res.render('post/edit', {
         post
       });
@@ -41,10 +41,10 @@ router.get('/edit/:id', ensureAuthenticated, (req, res) => {
 
 router.get('/delete/:id', ensureAuthenticated, (req, res) => {
   Post.findById(req.params.id)
-    .then((post) => {
+    .then((data) => {
       console.log(data);
       // handlebars issue
-      const post = JSON.parse(JSON.stringify(data));
+      const post = data.toObject();
       res.render('post/delete', {
         post
       });
@@ -63,7 +63,11 @@ router.get('/show/:id', (req, res) => {
   Post.findById(req.params.id)
     .then((data) => {
       // handlebars issue
-      const post = JSON.parse(JSON.stringify(data));
+      console.log(data);
+      console.log(data.images.header_image.data)
+      const post = data.toObject();
+      // console.log(post);
+      // console.log(post.images.header_image.data)
       res.render('post/show', {
         post
       });
@@ -116,7 +120,7 @@ router.post('/', ensureAuthenticated, upload.single('header_img'), (req, res) =>
 
 // update post
 router.put('/:id', ensureAuthenticated, upload.single('header_img'), (req, res) => {
-  console.log(req.files);
+  console.log(req.file);
   console.log(req.body);
   let allowComments = false;
   if (req.body.allowComments == 'on') {
@@ -145,7 +149,7 @@ router.put('/:id', ensureAuthenticated, upload.single('header_img'), (req, res) 
     'status': req.body.status,
     'allowComments': allowComments
   }
-
+  console.log(headerImg);
   Post.findById(req.params.id)
     .then((doc) => {
       console.log(`doc:  ${doc}`);
@@ -177,14 +181,14 @@ router.delete('/:id', ensureAuthenticated, (req, res) => {
 // get posts by category
 router.get('/', (req, res) => {
   Post.find({
-    status: 'published',
-    category: req.query.category
-  })
+      status: 'published',
+      category: req.query.category
+    })
     .sort('-date')
-    .then((data) => {
-      // console.log(data);
-      // handlebars issue
-      const posts = JSON.parse(JSON.stringify(data));
+    // handlebars issue
+    .lean()
+    .then((posts) => {
+      // console.log(posts);
       res.render('post/category', {
         'posts': posts
       });
@@ -203,16 +207,16 @@ router.post('/comment/:id', (req, res) => {
     }
   }
   Post.findOneAndUpdate({
-    _id: req.params.id,
-    allowComments: true
-  }, {
-    $push: {
-      comments: {
-        $each: [newComment],
-        $position: 0
+      _id: req.params.id,
+      allowComments: true
+    }, {
+      $push: {
+        comments: {
+          $each: [newComment],
+          $position: 0
+        }
       }
-    }
-  })
+    })
     .then((post) => {
       res.redirect(`/posts/show/${post.id}`);
     })
@@ -224,14 +228,14 @@ router.post('/comment/:id', (req, res) => {
 
 router.delete('/comment/:id', ensureAuthenticated, (req, res) => {
   Post.findOneAndUpdate({
-    _id: req.params.id
-  }, {
-    $pull: {
-      comments: {
-        _id: req.query.c_id
+      _id: req.params.id
+    }, {
+      $pull: {
+        comments: {
+          _id: req.query.c_id
+        }
       }
-    }
-  })
+    })
     .then((post) => {
       res.redirect(`/posts/show/${post.id}`);
     })

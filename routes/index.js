@@ -11,13 +11,12 @@ const router = express.Router();
 // get posts
 router.get('/', (req, res) => {
   Post.find({
-    status: 'published'
-  })
+      status: 'published'
+    })
     .sort('-date')
-    .then((data) => {
-      // console.log(doc);
-      // handlebars issue
-      const posts = JSON.parse(JSON.stringify(data));
+    // handlebars issue
+    .lean()
+    .then((posts) => {
       res.render('index/index', {
         'posts': posts
       });

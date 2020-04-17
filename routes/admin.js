@@ -81,9 +81,9 @@ router.get('/logout', ensureAuthenticated, (req, res) => {
 
 router.get('/', ensureAuthenticated, (req, res) => {
   Post.find({})
-    .then((data) => {
-      // handlebars issue
-      const posts = JSON.parse(JSON.stringify(data));
+    // handlebars issue
+    .lean()
+    .then((posts) => {
       res.render('admin/dashboard', {
         posts
       });
@@ -96,9 +96,9 @@ router.get('/', ensureAuthenticated, (req, res) => {
 router.get('/posts', ensureAuthenticated, (req, res) => {
   Post.find({})
     .sort('-date')
-    .then((data) => {
-      // handlebars issue
-      const posts = JSON.parse(JSON.stringify(data));
+    // handlebars issue
+    .lean()
+    .then((posts) => {
       res.render('admin/posts', {
         posts
       });

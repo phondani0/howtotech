@@ -10,19 +10,21 @@ const router = express.Router();
 
 // get posts
 router.get('/', (req, res) => {
-    Post.find({
-            status: 'published'
-        })
-        .sort('-date')
-        .then((posts) => {
-            // console.log(doc);
-            res.render('index/index', {
-                'posts': posts
-            });
-        })
-        .catch((err) => {
-            res.status(404).send();
-        })
+  Post.find({
+    status: 'published'
+  })
+    .sort('-date')
+    .then((data) => {
+      // console.log(doc);
+      // handlebars issue
+      const posts = JSON.parse(JSON.stringify(data));
+      res.render('index/index', {
+        'posts': posts
+      });
+    })
+    .catch((err) => {
+      res.status(404).send();
+    })
 });
 
 module.exports = router;

@@ -2,7 +2,7 @@
 Blog MVC app
 
 # Technologies Used
-This project is using Nosql database (mongoBD), Express.js,Handlebars.js and Node.js 
+This project is using Nosql database (mongoBD), Express.js,Handlebars.js, Bootstrap, and Node.js 
 
 # Prerequisites
 Following steps needed for the setup

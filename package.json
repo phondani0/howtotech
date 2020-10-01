@@ -10,7 +10,7 @@
   "author": "Ankit Phondani",
   "license": "ISC",
   "dependencies": {
-    "bcrypt": "^3.0.6",
+    "bcryptjs": "^2.4.3",
     "dotenv": "^7.0.0",
     "express": "^4.16.4",
     "express-handlebars": "^4.0.3",

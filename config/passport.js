@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const localStrategy = require('passport-local');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 // Admin model
 require('../model/Admin');

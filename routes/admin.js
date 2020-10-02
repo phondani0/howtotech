@@ -1,5 +1,9 @@
 const express = require('express');
 
+const mongoose = require('mongoose');
+const passport = require('passport');
+const bcrypt = require('bcryptjs');
+
 // import Admin Controllers
 const adminControllers = require('../Controllers/admin');
 

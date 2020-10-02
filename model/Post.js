@@ -16,9 +16,9 @@ const postSchema = new Schema({
         required: true
     },
     images: {
-        header_image: {
-            data: Buffer,
-            contentType: String
+        imageUrl : {
+            type : String,
+            required : true
         }
     },
     status: {

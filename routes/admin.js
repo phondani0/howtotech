@@ -1,15 +1,7 @@
 const express = require('express');
-const mongoose = require('mongoose');
-const passport = require('passport');
-const bcrypt = require('bcryptjs');
 
-// import Post model
-require('../model/Post');
-const Post = mongoose.model('posts');
-
-// import Admin model
-require('../model/Admin');
-const Admin = mongoose.model('admin');
+// import Admin Controllers
+const adminControllers = require('../Controllers/admin');
 
 const router = express.Router();
 
@@ -17,100 +9,27 @@ const {
   ensureAuthenticated
 } = require('../helpers/auth');
 
-router.get('/login', (req, res) => {
-  res.render('admin/login');
-});
+// LogIn routes
+router.get('/login', adminControllers.getLogIn);
 
-router.post('/login', (req, res, next) => {
-  passport.authenticate('local', {
-    successRedirect: '/admin',
-    failureRedirect: '/admin/login',
-    failureFlash: false
-  })(req, res, next);
-});
+router.post('/login', adminControllers.postLogin);
 
-// Logout
-router.get('/logout', ensureAuthenticated, (req, res) => {
-  req.logout();
-  res.redirect('/');
-});
+// LogOut routes
+router.get('/logout', ensureAuthenticated, adminControllers.getLogout);
 
-// uncomment the code for creating the new user
+// uncomment the code for creating the new user (Create a new User Routes)
 
-// router.get('/signup', (req, res) => {
-//     res.render('admin/signup');
-// });
+router.get('/signup', adminControllers.getSignUp);
 
-// router.post('/signup', (req, res) => {
-//   Admin.findOne({
-//       'username': req.body.username
-//     })
-//     .then(user => {
-//       if (user) {
-//         res.status(409).send('User already exists');
-//       } else {
-//         const newUser = new Admin({
-//           'username': req.body.username,
-//           'password': req.body.password
-//         });
-//         const saltRounds = 10;
-//         bcrypt.hash(newUser.password, saltRounds)
-//           .then(hash => {
-//             newUser.password = hash;
-//           })
-//           .then(() => {
-//             newUser.save()
-//               .then(user => {
-//                 console.log(`AdminUser: ${user}`);
-//                 res.redirect('/admin/login');
-//               })
-//               .catch(err => {
-//                 console.log(err);
-//                 res.sendStatus(500);
-//               });
-//           })
-//           .catch(err => {
-//             console.log(`Error: ${err}`);
-//           });
-//       }
-//     })
-//     .catch((err) => {
-//       console.log(`Error: ${err.message} - admin.js`);
-//     });
-// });
+router.post('/signup', adminControllers.postSignUp);
 
-router.get('/', ensureAuthenticated, (req, res) => {
-  Post.find({})
-    // handlebars issue
-    .lean()
-    .then((posts) => {
-      res.render('admin/dashboard', {
-        posts
-      });
-    })
-    .catch((err) => {
-      console.log(`Error: ${err}`);
-    })
-});
+// Admin Dashboard
+router.get('/', ensureAuthenticated, adminControllers.getAdminDashboard);
 
-router.get('/posts', ensureAuthenticated, (req, res) => {
-  Post.find({})
-    .sort('-date')
-    // handlebars issue
-    .lean()
-    .then((posts) => {
-      res.render('admin/posts', {
-        posts
-      });
-    })
-    .catch((err) => {
-      console.log(`Error: ${err}`);
-    })
-});
+// Admin Posts
+router.get('/posts', ensureAuthenticated, adminControllers.getAdminPosts);
 
-// Get Pages
-router.get('/pages', ensureAuthenticated, (req, res) => {
-  res.render('admin/pages');
-});
+// Get Admin Pages
+router.get('/pages', ensureAuthenticated, adminControllers.getAdminPages);
 
 module.exports = router;

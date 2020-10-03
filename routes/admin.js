@@ -5,7 +5,7 @@ const passport = require('passport');
 const bcrypt = require('bcryptjs');
 
 // import Admin Controllers
-const adminControllers = require('../Controllers/admin');
+const adminControllers = require('../controllers/admin');
 
 const router = express.Router();
 

@@ -1,6 +1,8 @@
 # Project title
 Blog MVC app
 
+![](https://visitor-badge.laobi.icu/badge?page_id=phondani0.howtotech)
+
 # Technologies Used
 This project is using Nosql database (mongoBD), Express.js,Handlebars.js, Bootstrap, and Node.js 
 

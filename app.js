@@ -43,7 +43,7 @@ mongoose.connect(mongodb_uri, {
     console.log(`Connected to MongoDB`);
   })
   .catch((e) => {
-    console.log(`Error: ${e.message}`);
+    console.log(`Error Mongo: ${e.message}`);
   });
 
 // Supress the deprication warning for FindAndModify

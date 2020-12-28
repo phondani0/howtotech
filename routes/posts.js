@@ -8,29 +8,15 @@ const {
 
 const router = express.Router();
 
-// add post
-router.get('/add', ensureAuthenticated, postController.getAddPost);
+const multer = require('multer');
 
-// show post
-router.get('/show/:id', (req, res) => {
-  Post.findById(req.params.id)
-    .then((data) => {
-      // handlebars issue
-      console.log(data);
-      console.log(data.images.header_image.data)
-      const post = data.toObject();
-      // console.log(post);
-      // console.log(post.images.header_image.data)
-      res.render('post/show', {
-        post
-      });
-    })
-    .catch((err) => {
-      console.log(`Error: ${err.message}`);
-      res.status(500).send();
-    });
+const storage = multer.memoryStorage();
+const upload = multer({
+  storage: storage
 });
 
+// add post
+router.get('/add', ensureAuthenticated, postController.getAddPost);
 
 router.get('/edit/:id', ensureAuthenticated, postController.getEditPost);
 
@@ -40,11 +26,11 @@ router.get('/delete/:id', ensureAuthenticated, postController.getDeletePost);
 router.get('/show/:id', postController.getShowPost);
 
 // add new post
-router.post('/', ensureAuthenticated, postController.postAddNewPost);
+router.post('/', ensureAuthenticated, upload.single('header_img'), postController.postAddNewPost);
 
 // update post
 
-router.put('/:id', ensureAuthenticated, postController.putUpdatePost);
+router.put('/:id', ensureAuthenticated, upload.single('header_img'), postController.putUpdatePost);
 
 // delete post
 router.delete('/:id', ensureAuthenticated, postController.deleteSinglePost);

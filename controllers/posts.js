@@ -1,16 +1,12 @@
 const mongoose = require('mongoose');
-const multer = require('multer');
 const fileHelper = require('../util/fileHelper');
-
 // import Post model
 require('../model/Post');
 const Post = mongoose.model('posts');
 
-// config multer
-const storage = multer.memoryStorage();
-const upload = multer({
-  storage: storage
-});
+const {
+  cloudinaryUpload
+} = require('../util/imageUpload');
 
 exports.getAddPost = (req, res) => {
   res.render('post/add');
@@ -47,20 +43,22 @@ exports.getDeletePost = (req, res) => {
 };
 
 exports.getShowPost = (req, res) => {
+  console.log(1)
   Post.findById(req.params.id)
     .then((data) => {
       const post = data.toObject();
       res.render('post/show', {
-        'post' : post
+        'post': post
       });
     })
     .catch((err) => {
-      console.log(`Error: ${err.message}`);
+      console.log(`Error1: ${err.message}`);
       res.status(500).send();
     });
 };
 
-exports.postAddNewPost = (req, res) => {
+exports.postAddNewPost = async (req, res) => {
+  console.log(req.body);
   let allowComments = false;
   if (req.body.allowComments == 'on') {
     allowComments = true;
@@ -68,21 +66,30 @@ exports.postAddNewPost = (req, res) => {
   // const allowTypes = ['image/jpeg', 'image/png'];
 
   const image = req.file;
-  console.log(req.file);  
-  let imageUrl = '';
-  if (!image) {
-    imageUrl = 'images/not-found.jpg';
-  } else{
-    imageUrl = image.path.replace(/\\/g, '/');
+  let imageUrl;
+
+  try {
+
+    const uploadResult = await cloudinaryUpload(image);
+    console.log(uploadResult);
+    imageUrl = uploadResult.secure_url ? uploadResult.secure_url : '';
+  } catch (err) {
+    console.log(err);
+    res.status(500).send();
   }
+  // if (!image) {
+  //   imageUrl = 'images/not-found.jpg';
+  // } else {
+  //   imageUrl = image.path.replace(/\\/g, '/');
+  // }
 
   const post = new Post({
     'title': req.body.title,
     'body': req.body.body,
     'images': {
-      'imageUrl' : imageUrl
+      'imageUrl': imageUrl
     },
-    'category': req.body.category.toLowerCase(),
+    'category': req.body.category ? req.body.category.toLowerCase() : 'ALL',
     'status': req.body.status,
     'allowComments': allowComments
   });
@@ -99,7 +106,7 @@ exports.postAddNewPost = (req, res) => {
     });
 };
 
-exports.putUpdatePost = (req, res) => {
+exports.putUpdatePost = async (req, res) => {
   const postId = req.params.id;
 
   const updatedTitle = req.body.title;
@@ -114,28 +121,43 @@ exports.putUpdatePost = (req, res) => {
   }
 
   Post.findById(postId)
-  .then(post => {
-    post.title = updatedTitle;
-    post.body = updatedbody;
-    post.category = updatedcategory;
-    post.status = updatedstatus;
-    post.allowComments = allowComments;
+    .then(async post => {
+      post.title = updatedTitle;
+      post.body = updatedbody;
+      post.category = updatedcategory;
+      post.status = updatedstatus;
+      post.allowComments = allowComments;
 
-    if(image){
-      fileHelper.deleteImage(post.images.imageUrl);
-      post.images.imageUrl = image.path.replace(/\\/, '/');
-    }
-    
-    return post.save()
-      .then( result => {
-        console.log('Post Updated Sucessfully');
-        res.redirect('/admin/posts');
-      })
-  })
-  .catch( err => {
-    console.log(`Error : ${err}`);
-    res.redirect('/');
-  });
+      if (image) {
+        // fileHelper.deleteImage(post.images.imageUrl);
+        cloudinaryUpload(image)
+          .then((result) => {
+            console.log(result);
+            imageUrl = uploadResult.secure_url ? uploadResult.secure_url : '';
+            post.images.imageUrl = imageUrl;
+          })
+          .catch(err => {
+            console.log(err);
+          })
+          .finally(() => {
+            return post.save()
+              .then(data => {
+                console.log('Post Updated Sucessfully');
+                res.redirect('/admin/posts');
+              })
+          });
+      } else {
+        return post.save()
+          .then(result => {
+            console.log('Post Updated Sucessfully');
+            res.redirect('/admin/posts');
+          })
+      }
+    })
+    .catch(err => {
+      console.log(`Error : ${err}`);
+      res.redirect('/');
+    });
 };
 
 exports.getPostsByCategory = (req, res) => {
@@ -163,19 +185,21 @@ exports.getPostsByCategory = (req, res) => {
 exports.deleteSinglePost = (req, res) => {
   const postId = req.params.id;
   Post.findById(postId)
-  .then( post => {
-    if(post.images.imageUrl !== 'images/not-found.jpg'){
-      fileHelper.deleteImage(post.images.imageUrl);
-    }
-    return Post.deleteOne({_id : postId});
-  })
-  .then(() => {
-    console.log('Post deleted successfully');
-    res.redirect('/admin/posts');
-  })
-  .catch((err) => {
-    res.status(500).send();
-  });
+    .then(post => {
+      // if (post.images.imageUrl !== 'images/not-found.jpg') {
+      //   fileHelper.deleteImage(post.images.imageUrl);
+      // }
+      return Post.deleteOne({
+        _id: postId
+      });
+    })
+    .then(() => {
+      console.log('Post deleted successfully');
+      res.redirect('/admin/posts');
+    })
+    .catch((err) => {
+      res.status(500).send();
+    });
 };
 
 exports.postComment = (req, res) => {

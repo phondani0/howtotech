@@ -1,29 +1,28 @@
 <h2 class="py-3 section_header">Category: {{posts.[0].category}}</h2>
 <hr>
 <div class="my-3 my-sm-4">
-    <div class="row">
-        {{#each posts}}
-        <div class="col-md-6 col-lg-4 py-3 py-sm-0 p-sm-2">
-            <div class="post">
-                <a href="/posts/show/{{_id}}">
-                    <div class="card">
-                        <img src="../../{{images.imageUrl}}"
-                            class="card-img" alt=".">
-                        <div class="post-category text-white">
-                            <a href="/posts?category={{category}}">{{category}}</a>
-                        </div>
-                        <div class="card-body post-body">
-                            <div class="text-muted">
-                                <p>{{getDate date}}</p>
-                            </div>
-                            <a href="/posts/show/{{_id}}">
-                                <h3 class="card-title post-title">{{title}}</h3>
-                            </a>
-                        </div>
-                    </div>
-                </a>
+  <div class="row">
+    {{#each posts}}
+    <div class="col-md-6 col-lg-4 py-3 py-sm-0 p-sm-2">
+      <div class="post">
+        <a href="/posts/show/{{_id}}">
+          <div class="card">
+            <img src="{{images.imageUrl}}" class="card-img" alt=".">
+            <div class="post-category text-white">
+              <a href="/posts?category={{category}}">{{category}}</a>
             </div>
-        </div>
-        {{/each}}
+            <div class="card-body post-body">
+              <div class="text-muted">
+                <p>{{getDate date}}</p>
+              </div>
+              <a href="/posts/show/{{_id}}">
+                <h3 class="card-title post-title">{{title}}</h3>
+              </a>
+            </div>
+          </div>
+        </a>
+      </div>
     </div>
+    {{/each}}
+  </div>
 </div>

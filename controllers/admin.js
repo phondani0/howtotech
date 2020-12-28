@@ -34,40 +34,40 @@ exports.getSignUp = (req, res) => {
 
 exports.postSignUp = (req, res) => {
   Admin.findOne({
-    'username': req.body.username
-  })
-  .then(user => {
-    if (user) {
-      res.status(409).send('User already exists');
-    } else {
-      const newUser = new Admin({
-        'username': req.body.username,
-        'password': req.body.password
-    });
-      const saltRounds = 10;
-      bcrypt.hash(newUser.password, saltRounds)
-        .then(hash => {
-          newUser.password = hash;
-        })
-        .then(() => {
-          newUser.save()
-            .then(user => {
-              console.log(`AdminUser: ${user}`);
-              res.redirect('/admin/login');
-            })
-            .catch(err => {
-              console.log(err);
-              res.sendStatus(500);
-            });
-        })
-        .catch(err => {
-          console.log(`Error: ${err}`);
+      'username': req.body.username
+    })
+    .then(user => {
+      if (user) {
+        res.status(409).send('User already exists');
+      } else {
+        const newUser = new Admin({
+          'username': req.body.username,
+          'password': req.body.password
         });
-    }
-  })
-  .catch((err) => {
-    console.log(`Error: ${err.message} - admin.js`);
-  });
+        const saltRounds = 10;
+        bcrypt.hash(newUser.password, saltRounds)
+          .then(hash => {
+            newUser.password = hash;
+          })
+          .then(() => {
+            newUser.save()
+              .then(user => {
+                console.log(`AdminUser: ${user}`);
+                res.redirect('/admin/login');
+              })
+              .catch(err => {
+                console.log(err);
+                res.sendStatus(500);
+              });
+          })
+          .catch(err => {
+            console.log(`Error: ${err}`);
+          });
+      }
+    })
+    .catch((err) => {
+      console.log(`Error: ${err.message} - admin.js`);
+    });
 };
 
 exports.getAdminDashboard = (req, res) => {

@@ -1,55 +1,53 @@
 <h1 class="py-3">Edit Post</h1>
 <div class="row">
-    <div class="col-sm-12 mb-5">
-        <form action="/posts/{{post._id}}?_method=PUT" method="POST" enctype="multipart/form-data">
-            <div class="form-group">
-                <label for="title">Title</label>
-                <input class="form-control" id="title" type="text" name="title" value="{{post.title}}"
-                    placeholder=" Title of the Post" required>
-            </div>
-            <div class="d-flex flex-wrap justify-content-between">
-                <div class="form-group mr-3">
-                    <label class="mr-3" for="">Header Image</label>
-                    <input id="upload_file" class="d-none" name="header_img" type="file">
-                    <div class="d-flex">
-                        <button id="header_img-upload" class="d-block btn btn-primary" type="button">CHOOSE A
-                            IMAGE</button>
-                        <span class="pl-3" id="upload_text"><small>No file chosen</small></span>
-                    </div>
-                </div>
-                <div class="d-none" id="header_img-container">
-                    <img id="header_img"
-                        src="data:{{post.images.header_image.type}};base64,{{toBase64 post.images.header_image.data}}"
-                        alt="header_img">
-                    <div id="remove_img">delete</div>
-                    <p class="py-2" id="uploaded_img-size"></p>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="title">Category</label>
-                <input class="form-control" id="category" type="text" name="category" value="{{post.category}}"
-                    placeholder="Category of the Post" required>
-            </div>
-            <div class="form-group">
-                <label for="status">Status</label>
-                <select class="form-control" id="status" name="status">
-                    {{#select post.status}}
-                    <option value="published">Published</option>
-                    <option value="unpublished">Unpublished</option>
-                    {{/select}}
-                </select>
-            </div>
-            <div class="form-group form-check">
-                <input class="form-check-input" name="allowComments" type="checkbox" {{#if post.allowComments}} checked
-                    {{/if}} id="checkbox">
-                <label class="form-check-label" for="checkbox">Allow Comments</label>
-            </div>
-            <div class="form-group">
-                <label for="post-body">Body </label>
-                <textarea class="input-group" id="post-body" name="body" rows="25"
-                    placeholder="Write what is in your mind">{{post.body}}</textarea>
-            </div>
-            <input class="form-control btn btn-dark" type="submit" value="Post">
-        </form>
-    </div>
+  <div class="col-sm-12 mb-5">
+    <form action="/posts/{{post._id}}?_method=PUT" method="POST" enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input class="form-control" id="title" type="text" name="title" value="{{post.title}}"
+          placeholder=" Title of the Post" required>
+      </div>
+      <div class="d-flex flex-wrap justify-content-between">
+        <div class="form-group mr-3">
+          <label class="mr-3" for="">Header Image</label>
+          <input id="upload_file" class="d-none" name="header_img" type="file">
+          <div class="d-flex">
+            <button id="header_img-upload" class="d-block btn btn-primary" type="button">CHOOSE A
+              IMAGE</button>
+            <span class="pl-3" id="upload_text"><small>No file chosen</small></span>
+          </div>
+        </div>
+        <div class="d-none" id="header_img-container">
+          <img id="header_img" src="{{post.images.imageUrl}}" alt="header_img">
+          <div id="remove_img">delete</div>
+          <p class="py-2" id="uploaded_img-size"></p>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="title">Category</label>
+        <input class="form-control" id="category" type="text" name="category" value="{{post.category}}"
+          placeholder="Category of the Post" required>
+      </div>
+      <div class="form-group">
+        <label for="status">Status</label>
+        <select class="form-control" id="status" name="status">
+          {{#select post.status}}
+          <option value="published">Published</option>
+          <option value="unpublished">Unpublished</option>
+          {{/select}}
+        </select>
+      </div>
+      <div class="form-group form-check">
+        <input class="form-check-input" name="allowComments" type="checkbox" {{#if post.allowComments}} checked {{/if}}
+          id="checkbox">
+        <label class="form-check-label" for="checkbox">Allow Comments</label>
+      </div>
+      <div class="form-group">
+        <label for="post-body">Body </label>
+        <textarea class="input-group" id="post-body" name="body" rows="25"
+          placeholder="Write what is in your mind">{{post.body}}</textarea>
+      </div>
+      <input class="form-control btn btn-dark" type="submit" value="Post">
+    </form>
+  </div>
 </div>

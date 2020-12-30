@@ -1,5 +1,4 @@
-# Project title
-Blog MVC app
+# Blog MVC app
 
 ![](https://visitor-badge.laobi.icu/badge?page_id=phondani0.howtotech)
 
